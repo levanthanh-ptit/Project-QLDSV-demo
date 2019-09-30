@@ -9,58 +9,84 @@ namespace SQLData
     abstract class Table<T> where T : class
     {
         private T[] DataList;
+        public long CurrentIndex;
+        public T Current = null;
         public long Length = 0;
         private long MaxLength;
-        private long nextId = 0;
         public Table(long length)
         {
             DataList = new T[length];
             MaxLength = length;
+            CurrentIndex = -1;
         }
 
-        public long GetNexId()
-        {
-            this.nextId++;
-            return nextId;
-        }
         public T DataAt(long index)
         {
             if (index < 0 || index >= MaxLength) return null;
             else return DataList[index];
         }
-        public T RowAt(long index)
+        public void MoveCurrentIndex(long index)
         {
-            if (index < 0 || index >= Length) return null;
-            else return DataList[index];
+            CurrentIndex = index;
+            Current = DataList[index];
         }
-        public abstract bool ElementCompare(T t1, T t2);
-        public T First(T param)
+        public void MoveNext()
+        {
+            if (DataList[CurrentIndex + 1] != null)
+            {
+                MoveCurrentIndex(++CurrentIndex);
+            }
+        }
+        public void MovePrevious()
+        {
+            if (CurrentIndex - 1 >= 0)
+            {
+                MoveCurrentIndex(--CurrentIndex);
+            }
+        }
+        public abstract bool ElementKeyCompare(T t1, T t2);
+        public T Find(T param)
         {
             foreach (T row in DataList)
             {
-                if (ElementCompare(param, row)) return row;
+                if (ElementKeyCompare(param, row)) return row;
             }
             return null;
         }
-        public long FirstIndex(T param)
+        public long FindIndex(T element)
         {
             for (int i = 0; i < Length; i++)
             {
-                if (ElementCompare(param, DataList[i])) return i;
+                if (ElementKeyCompare(element, DataList[i])) return i;
             }
             return -1;
         }
         public void Add(T newElement)
         {
-            if (FirstIndex(newElement) == -1) DataList[Length] = newElement;
+
+            if (FindIndex(newElement) == -1)
+            {
+                DataList[Length] = newElement;
+                Length++;
+                if (CurrentIndex == -1) MoveCurrentIndex(0);
+            }
         }
-        public void remove(T element)
+        public void Update(T element)
         {
-            long index = FirstIndex(element);
-            for(long i = index; i < Length -1; i++)
+            long index = FindIndex(element);
+            DataList[index] = element;
+        }
+        public void Remove(T element)
+        {
+            long index = FindIndex(element);
+            if (index == -1) return;
+            for (long i = index; i < Length - 1; i++)
             {
                 DataList[i] = DataList[i + 1];
             }
+            DataList[Length - 1] = null;
+            Length--;
+            if (CurrentIndex >= Length) MoveCurrentIndex(Length - 1);
         }
     }
 }

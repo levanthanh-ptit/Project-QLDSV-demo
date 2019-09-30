@@ -18,8 +18,14 @@ namespace Project_QLDSV
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            Table<Student> table = new Table<Student>(100) ;
-
+            DSSV dSSV = new DSSV(100);
+            dSSV.Add(new Student("A"));
+            dSSV.Add(new Student("B"));
+            dSSV.Add(new Student("C"));
+            dSSV.Add(new Student("D"));
+            dSSV.Remove(new Student("C"));
+            dSSV.Add(new Student("E"));
+            dSSV.Current
         }
     }
 }

@@ -8,6 +8,11 @@ namespace Project_QLDSV
 {
     class Student
     {
-        string Name { get; set; }
+        public string Name { get; set; }
+        public Student() { }
+        public Student(string Name)
+        {
+            this.Name = Name;
+        }
     }
 }
