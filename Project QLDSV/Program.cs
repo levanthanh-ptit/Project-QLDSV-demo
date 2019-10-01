@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -9,23 +10,31 @@ namespace Project_QLDSV
 {
     static class Program
     {
-        /// <summary>
-        /// The main entry point for the application.
-        /// </summary>
+        public static DataRepository dataRepository = new DataRepository();
+        //Student table
+        public static StudentTable dSSV = new StudentTable("SINHVIEN");
+        public static StudentTableAdapter studentTableAdapter;
+        public static void SetupServices()
+        {
+            dataRepository.Server = "DESKTOP-1VI1ATV";
+            dataRepository.DataBase = "QLDSV";
+            dataRepository.LoginName = "sa";
+            dataRepository.Password = "123";
+            dataRepository.NewSqlConnection();
+            studentTableAdapter = new StudentTableAdapter(dSSV, dataRepository.sqlConnection);
+        }
+        public static void StartServices()
+        {  
+            dataRepository.ConnectServer();
+            studentTableAdapter.Fill();
+        }
         [STAThread]
         static void Main()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-
-            DSSV dSSV = new DSSV(100);
-            dSSV.Add(new Student("A"));
-            dSSV.Add(new Student("B"));
-            dSSV.Add(new Student("C"));
-            dSSV.Add(new Student("D"));
-            dSSV.Remove(new Student("C"));
-            dSSV.Add(new Student("E"));
-            dSSV.Current
+            SetupServices();
+            StartServices();           
         }
     }
 }

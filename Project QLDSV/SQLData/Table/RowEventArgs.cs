@@ -6,13 +6,12 @@ using System.Threading.Tasks;
 
 namespace SQLData
 {
-    class Row<T> where T : class
+    class RowEventArgs<T> : EventArgs
     {
-        public T Data { get; set; }
-        public long RowId { get; }
-        public Row(long id)
+        public T row { get; }
+        public RowEventArgs(T t)
         {
-            this.RowId = id;
+            row = t;
         }
     }
 }
