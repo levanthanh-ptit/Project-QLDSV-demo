@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SQLData;
+using SQLData.Table;
+using SQLData.TableAdapter;
 
 namespace Project_QLDSV
 {

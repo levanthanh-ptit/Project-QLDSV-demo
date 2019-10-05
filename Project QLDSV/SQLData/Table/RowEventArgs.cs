@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.InteropServices;
 
-namespace SQLData
+namespace SQLData.Table
 {
-    class RowEventArgs<T> : EventArgs
+    public class RowEventArgs<T> : EventArgs where T : class
     {
-        public T row { get; }
+        public T Row { get; }
         public RowEventArgs(T t)
         {
-            row = t;
+            Row = t;
         }
     }
 }

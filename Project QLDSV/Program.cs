@@ -14,6 +14,7 @@ namespace Project_QLDSV
         //Student table
         public static StudentTable dSSV = new StudentTable("SINHVIEN");
         public static StudentTableAdapter studentTableAdapter;
+        public static Form1 Form1;
         public static void SetupServices()
         {
             dataRepository.Server = "DESKTOP-1VI1ATV";
@@ -22,6 +23,7 @@ namespace Project_QLDSV
             dataRepository.Password = "123";
             dataRepository.NewSqlConnection();
             studentTableAdapter = new StudentTableAdapter(dSSV, dataRepository.sqlConnection);
+            Form1 = new Form1();
         }
         public static void StartServices()
         {  
@@ -34,7 +36,8 @@ namespace Project_QLDSV
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             SetupServices();
-            StartServices();           
+            StartServices();
+            Application.Run(Form1);
         }
     }
 }

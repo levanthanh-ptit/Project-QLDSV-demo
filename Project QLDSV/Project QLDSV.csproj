@@ -22,6 +22,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -31,6 +32,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -46,6 +48,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="SQLData\QueryBatch\QueryBatch.cs" />
+    <Compile Include="SQLData\Row\Row.cs" />
+    <Compile Include="SQLData\Row\Key.cs" />
     <Compile Include="SQLData\Table\RowEventArgs.cs" />
     <Compile Include="Implement Sample\StudentTable.cs" />
     <Compile Include="Form1.cs">
@@ -64,6 +69,8 @@
     <Compile Include="SQLData\TableAdapter\TableAdapter.cs" />
     <Compile Include="Implement Sample\Student.cs" />
     <Compile Include="Implement Sample\StudentTableAdapter.cs" />
+    <Compile Include="SQLData\Table\TableEventInterface.cs" />
+    <Compile Include="SQLData\Table\TableState.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

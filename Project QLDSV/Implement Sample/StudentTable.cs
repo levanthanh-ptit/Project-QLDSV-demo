@@ -5,11 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using SQLData;
+using SQLData.Table;
+
 namespace Project_QLDSV
 {
     class StudentTable : Table<Student>
     {
-        public StudentTable(string tableName, long length = 100) : base(tableName, length)
+        public StudentTable(string tableName, int length = 100) : base(tableName, length)
         {
             AddEventHandler();
         }
@@ -21,12 +23,12 @@ namespace Project_QLDSV
 
         private void StudentTable_RowDeleted(object sender, RowEventArgs<Student> e)
         {
-            throw new NotImplementedException();
+            
         }
 
         private void StudentTable_RowAdded(object sender, RowEventArgs<Student> e)
         {
-            MessageBox.Show(e.row.ToString());
+            
         }
 
         public override int ItemKeyCompare(Student t1, Student t2)

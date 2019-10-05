@@ -1,34 +1,41 @@
 ﻿using System.Collections.Generic;
 using System;
-namespace SQLData
+using SQLData.Table;
+
+namespace SQLData.Table
 {
-    abstract class Table<T> where T : class
+    abstract class Table<T> where T : Row.Row
     {
         public string TableName { get; }
-        private T[] DataList;
-        public long CurrentIndex;
+        private T[] DataList { get; }
+        public int CurrentIndex;
         public T Current = null;
-        public long Length = 0;
-        private long MaxLength;
+        public int Length = 0;
+        private readonly int MaxLength;
+        public TableState State = TableState.Initialized;
         public event EventHandler<RowEventArgs<T>> RowAdded;
         public event EventHandler<RowEventArgs<T>> RowDeleted;
-        public Table(string tableName, long length = 100)
+        public event EventHandler<EventArgs> TableFilled;
+        public Table(string tableName, int length = 100)
         {
             DataList = new T[length];
             MaxLength = length;
             CurrentIndex = -1;
             TableName = tableName;
         }
-        public T DataAt(long index)
+
+        public T DataAt(int index)
         {
             if (index < 0 || index >= MaxLength) return null;
             else return DataList[index];
         }
-        public void MoveCurrentIndex(long index)
+
+        public void MoveCurrentIndex(int index)
         {
             CurrentIndex = index;
             Current = DataList[index];
         }
+
         public void MoveNext()
         {
             if (DataList[CurrentIndex + 1] != null)
@@ -36,6 +43,7 @@ namespace SQLData
                 MoveCurrentIndex(++CurrentIndex);
             }
         }
+
         public void MovePrevious()
         {
             if (CurrentIndex - 1 >= 0)
@@ -43,6 +51,7 @@ namespace SQLData
                 MoveCurrentIndex(--CurrentIndex);
             }
         }
+
         /// <summary>
         /// Key compare function
         /// <list type="int">
@@ -58,6 +67,7 @@ namespace SQLData
         /// </list>
         /// </summary>
         public abstract int ItemKeyCompare(T t1, T t2);
+
         public T Find(T item) // còn cùi bắp. chặt nhị phân?
         {
             foreach (T row in DataList)
@@ -66,7 +76,8 @@ namespace SQLData
             }
             return null;
         }
-        public long FindIndex(T item) // còn cùi bắp. chặt nhị phân?
+
+        public int FindIndex(T item) // còn cùi bắp. chặt nhị phân?
         {
             for (int i = 0; i < Length; i++)
             {
@@ -74,11 +85,12 @@ namespace SQLData
             }
             return -1;
         }
+
         public void Add(T newItem)
         {
-
             if (FindIndex(newItem) == -1)
             {
+                newItem.Index = Length;
                 DataList[Length] = newItem;
                 //Added event
                 OnRowAdded(DataList[Length]);
@@ -87,19 +99,21 @@ namespace SQLData
             }
             else throw new PrimaryKeyException(PrimaryKeyException.DUPLICATED);
         }
-        public void Update(T item)
+
+        public void UpdateRow(T item)
         {
-            long index = FindIndex(item);
-            DataList[index] = item;
+            DataList[item.Index] = item;
         }
+
         public void Remove(T item)
         {
-            long index = FindIndex(item);
+            int index = FindIndex(item);
             if (index == -1) return;
             T[] deleted = Splice(index, 1);
             //Deleted event
             OnRowDeleted(deleted[0]);
         }
+
         /// <summary>
         /// less than 0 for left shift, greater than 0 for right shift.
         /// </summary>
@@ -108,16 +122,16 @@ namespace SQLData
         /// <returns>
         /// The deleted part
         /// </returns>
-        public T[] Splice(long index, long deleteCount)
+        public T[] Splice(int index, int deleteCount)
         {
-            long endPoint = index + deleteCount;
-            if (endPoint > Length - deleteCount) endPoint = Length - deleteCount;
-            for (long i = index; i < endPoint; i++)
+            int endPoint = Length - deleteCount;
+            for (int i = index; i < endPoint; i++)
             {
                 DataList[i] = DataList[i + deleteCount];
+                DataList[i].Index -= deleteCount;
             }
             T[] deleted = new T[deleteCount];
-            for (long i = endPoint; i < Length; i++)
+            for (int i = endPoint; i < Length; i++)
             {
                 deleted[i - endPoint] = DataList[i];
                 DataList[i] = null;
@@ -126,14 +140,24 @@ namespace SQLData
             if (CurrentIndex >= Length) MoveCurrentIndex(Length - 1);
             return deleted;
         }
+
         protected abstract void AddEventHandler();
-        public void OnRowAdded(T t)
+
+        private void OnRowAdded(T t)
         {
+            State = TableState.Changed;
             RowAdded?.Invoke(this, new RowEventArgs<T>(t));
         }
-        public void OnRowDeleted(T t)
+
+        private void OnRowDeleted(T t)
         {
+            State = TableState.Changed;
             RowDeleted?.Invoke(this, new RowEventArgs<T>(t));
+        }
+        public void OnTableFilled()
+        {
+            State = TableState.Filled;
+            TableFilled?.Invoke(this, new EventArgs());
         }
     }
 }
