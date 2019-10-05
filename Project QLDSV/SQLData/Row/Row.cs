@@ -12,7 +12,12 @@ namespace SQLData.Row
     {
         public int Index { get; set; }
         public long RowId { get; protected set; }
-        private static long GlobalCurrentId = 1;
+        private static long GlobalCurrentId = 0;
+
+        public Row()
+        {
+            RowId = GetNewId();
+        }
 
         public abstract override string ToString();
 
@@ -33,7 +38,8 @@ namespace SQLData.Row
 
         public long GetNewId()
         {
-            return GlobalCurrentId++;
+            GlobalCurrentId++;
+            return GlobalCurrentId;
         }
        
     }

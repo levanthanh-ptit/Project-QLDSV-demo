@@ -20,7 +20,6 @@ namespace Project_QLDSV
         }
         public Student(int Index, string MASV, string HO, string TEN)
         {
-            RowId = GetNewId();
             this.Index = Index;
             this.MASV = MASV;
             this.HO = HO;
