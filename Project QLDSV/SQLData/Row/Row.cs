@@ -10,7 +10,9 @@ namespace SQLData.Row
 {
     public abstract class Row
     {
+        [Ignore]
         public int Index { get; set; }
+        [Ignore]
         public long RowId { get; protected set; }
         private static long GlobalCurrentId = 0;
 
@@ -21,17 +23,20 @@ namespace SQLData.Row
 
         public abstract override string ToString();
 
-        public object[] ToRowObject() {
+        public object[] ToRowObject()
+        {
             PropertyInfo[] props = GetType().GetProperties();
             List<object> propsToReturn = new List<object>();
             foreach (PropertyInfo e in props)
             {
+                bool ignored = e.GetCustomAttribute(typeof(Ignore)) == null ? false : true;
+                if (ignored == true) continue;
                 if (e.CustomAttributes.Count() > 0)
                 {
                     Key k = (Key)e.GetCustomAttribute(typeof(Key));
                     if (k.FeildName == null) k.FeildName = e.Name;
                 }
-                propsToReturn.Add(e.GetValue(this,null));
+                propsToReturn.Add(e.GetValue(this, null));
             }
             return propsToReturn.ToArray();
         }
@@ -41,6 +46,6 @@ namespace SQLData.Row
             GlobalCurrentId++;
             return GlobalCurrentId;
         }
-       
+
     }
 }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Project_QLDSV.SQLData.Row
+namespace SQLData.Row
 {
     [AttributeUsage(AttributeTargets.Property)]
     public class Ignore : Attribute
