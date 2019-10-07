@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SQLData.Table
 {
-    interface TableEventInterface
+    interface ITableEventInterface
     {
         void AddEventHandler();
     }

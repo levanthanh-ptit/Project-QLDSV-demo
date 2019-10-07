@@ -4,19 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Project_QLDSV.SQLData.QueryBatch
+namespace SQLData.QueryBatch
 {
-    struct QueryStament
+    partial class QueryBatch : Dictionary<string, QueryStament>
     {
-        long Id { get; set; }
-        string QueryString { get; set; }
-    }
-    class QueryBatch
-    {
-        List<QueryStament> QueryStaments = new List<QueryStament>();
-        public void Clean()
+        public string TableName { get; set; }
+        public void AddQuery(string rowId, QueryStament queryStatement)
         {
-            QueryStaments.Clear();
+            Add(rowId, queryStatement);
         }
     }
 }

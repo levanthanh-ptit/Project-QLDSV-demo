@@ -49,8 +49,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="SQLData\QueryBatch\QueryBatch.cs" />
+    <Compile Include="SQLData\QueryBatch\QueryColumn.cs" />
+    <Compile Include="SQLData\QueryBatch\QueryStament.cs" />
+    <Compile Include="SQLData\QueryBatch\Statement.cs" />
+    <Compile Include="SQLData\Row\IgnoreAttribute.cs" />
     <Compile Include="SQLData\Row\Row.cs" />
-    <Compile Include="SQLData\Row\Key.cs" />
+    <Compile Include="SQLData\Row\KeyAttribute.cs" />
     <Compile Include="SQLData\Table\RowEventArgs.cs" />
     <Compile Include="Implement Sample\StudentTable.cs" />
     <Compile Include="Form1.cs">
@@ -69,7 +73,7 @@
     <Compile Include="SQLData\TableAdapter\TableAdapter.cs" />
     <Compile Include="Implement Sample\Student.cs" />
     <Compile Include="Implement Sample\StudentTableAdapter.cs" />
-    <Compile Include="SQLData\Table\TableEventInterface.cs" />
+    <Compile Include="SQLData\Table\ITableEventInterface.cs" />
     <Compile Include="SQLData\Table\TableState.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>

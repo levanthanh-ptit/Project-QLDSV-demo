@@ -12,7 +12,7 @@ using SQLData.Table;
 
 namespace Project_QLDSV
 {
-    public partial class Form1 : Form, TableEventInterface
+    public partial class Form1 : Form, ITableEventInterface
     {
         bool edited = false;
         public Form1()
