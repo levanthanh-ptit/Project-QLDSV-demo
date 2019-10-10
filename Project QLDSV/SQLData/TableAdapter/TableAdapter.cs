@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace SQLData.TableAdapter
 {
-    abstract class TableAdapter<T> where T : Row.Row, new() 
+    public abstract class TableAdapter<T> where T : Row.Row, new() 
     {
-        public Table<T> DataTable { get; set; }
+        private Table<T> DataTable { get; set; }
         public SqlConnection Connection { get; set; }
         public string Fillter { get; set; } = "";
-        public TableAdapter(Table<T> table, ref SqlConnection connection)
+        public TableAdapter(Table<T> table, SqlConnection connection)
         {
             DataTable = table;
             Connection = connection;
@@ -27,21 +27,50 @@ namespace SQLData.TableAdapter
         {
             if (Connection.State == System.Data.ConnectionState.Open)
             {
+                string queryCountString = $"SELECT count(*) FROM {DataTable.TableName}";
+                int queryCount;
+                SqlCommand command = new SqlCommand(queryCountString, Connection);
+                SqlDataReader countReader = command.ExecuteReader();
+                countReader.Read();
+                queryCount = countReader.GetInt32(0);
+                countReader.Close();
+                DataTable.DataList = new T[queryCount];
                 string queryString = $"SELECT TOP 100 * FROM {DataTable.TableName}";
                 if (Fillter != "") queryString += $" WHERE {Fillter}";
-                SqlCommand command = new SqlCommand(queryString, Connection);
+                command.CommandText = queryString;
                 SqlDataReader dataReader = command.ExecuteReader();
                 while (dataReader.Read())
                 {
                     DataTable.Add(NewRowFromReader(dataReader));
                 }
+                dataReader.Close();
+                ///
+                ///Table Event
+                ///
+                //DataTable.OnTableFilled();
+            }
+        }
+        public void SP_Fill(string SPString)
+        {
+            if (Connection.State == System.Data.ConnectionState.Open)
+            {
+                string sql = $"DECLARE @return_value int EXEC @return_value = {SPString} SELECT 'Return Value' = @return_value";
+                SqlCommand command = new SqlCommand(sql, Connection);              
+                SqlDataReader dataReader = command.ExecuteReader();
+                dataReader.Read();
+                int queryCount = dataReader.GetInt32(0);
+                DataTable.DataList = new T[queryCount];
+                while (dataReader.Read())
+                {
+                    DataTable.Add(NewRowFromReader(dataReader));
+                }
+                dataReader.Close();
                 ///
                 ///Table Event
                 ///
                 DataTable.OnTableFilled();
             }
         }
-        
         public void UpdateTable()
         {
             

@@ -7,62 +7,83 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using SQLData;
+using Project_QLDSV.Mon_Hoc;
 using SQLData.Table;
+using Project_QLDSV.GiaoTac_Table;
+using System.Data.SqlClient;
 
 namespace Project_QLDSV
 {
     public partial class Form1 : Form, ITableEventInterface
     {
-        bool edited = false;
-        public Form1()
+        private MonHocTable MonHocTable;
+        private MonHocAdapter MonHocAdapter;
+        private GiaoTacTable GiaoTacTable;
+        private GiaoTacAdapter GiaoTacAdapter;
+        public Form1(MonHocTable MonHocTable, MonHocAdapter MonHocAdapter, GiaoTacTable GiaoTacTable, GiaoTacAdapter GiaoTacAdapter)
         {
+            this.MonHocTable = MonHocTable;
+            this.MonHocAdapter = MonHocAdapter;
+            this.GiaoTacTable = GiaoTacTable;
+            this.GiaoTacAdapter = GiaoTacAdapter;
             InitializeComponent();
             AddEventHandler();
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            Student st = new Student(dataGridView1.CurrentRow.Cells[0].Value.ToString());
-            Program.dSSV.Remove(st);
-        }
-
         public void AddEventHandler()
         {
-            Program.dSSV.RowAdded += DSSV_RowAdded;
-            Program.dSSV.RowDeleted += DSSV_RowDeleted;
+            MonHocTable.RowAdded += MonHocTable_RowAdded;
+            MonHocTable.RowDeleted += MonHocTable_RowDeleted;
+            GiaoTacTable.TableFilled += GiaoTacTable_TableFilled;
         }
 
-        private void DSSV_RowDeleted(object sender, RowEventArgs<Student> e)
+        private void GiaoTacTable_TableFilled(object sender, EventArgs e)
         {
-            dataGridView1.Rows.RemoveAt(e.Row.Index);
-        }
-
-        private void DSSV_RowAdded(object sender, RowEventArgs<Student> e)
-        {
-            dataGridView1.Rows.Add(e.Row.ToRowObject());
-        }
-
-        private void dataGridView1_RowValidated(object sender, DataGridViewCellEventArgs e)
-        {
-
-            DataGridView view = (DataGridView)sender;
-            if (edited)
+            dataGridViewGiaotac.Rows.Clear();
+            dataGridViewGiaotac.Columns.Clear();
+            dataGridViewGiaotac.Columns.Add(new DataGridViewTextBoxColumn() { Name = "MASVCol", HeaderText = "Mã SV" });
+            DataGridViewColumn[] columns = new DataGridViewColumn[GiaoTacTable.DynamicFeildLabels.Length];
+            for (int i = 0; i < GiaoTacTable.DynamicFeildLabels.Length; i++)
             {
-                Program.dSSV.UpdateRow(new Student(
-                                    e.RowIndex,
-                                    view.Rows[e.RowIndex].Cells[0].Value.ToString(),
-                                    view.Rows[e.RowIndex].Cells[1].Value.ToString(),
-                                    view.Rows[e.RowIndex].Cells[2].Value.ToString()
-                                    ));
-                edited = false;
+                DataGridViewColumn column = new DataGridViewTextBoxColumn()
+                {
+                    Name = $"{GiaoTacTable.DynamicFeildLabels[i]}Col",
+                    HeaderText = GiaoTacTable.DynamicFeildLabels[i]
+                };
+                columns[i] = column;
             }
+            dataGridViewGiaotac.Columns.AddRange(columns);
+            foreach (GiaoTac gt in GiaoTacTable.DataList)
+            {
+                dataGridViewGiaotac.Rows.Add(gt.ToRowObject());
+            }
+        }
+
+        private void MonHocTable_RowDeleted(object sender, RowEventArgs<MonHoc> e)
+        {
 
         }
 
-        private void dataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        private void MonHocTable_RowAdded(object sender, RowEventArgs<Mon_Hoc.MonHoc> e)
         {
-            if (Program.dSSV.State == TableState.Filled) edited = true;
+            dataGridViewMonHoc.Rows.Add(e.Row.ToRowObject());
+        }
+
+        private void trackBarMinSup_Scroll(object sender, EventArgs e)
+        {
+            labelMinSup.Text = trackBarMinSup.Value.ToString() + "%";
+        }
+
+        private void btnRefill_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                GiaoTacAdapter.SP_Fill(trackBarMinSup.Value);
+            }
+            catch(SqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

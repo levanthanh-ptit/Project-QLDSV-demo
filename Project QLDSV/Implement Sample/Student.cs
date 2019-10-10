@@ -25,9 +25,5 @@ namespace Project_QLDSV
             this.HO = HO;
             this.TEN = TEN;
         }
-        public override string ToString()
-        {
-            return $"[MASV] {MASV} \n[HO] {HO} \n[TEN] {TEN}";
-        }
     }
 }

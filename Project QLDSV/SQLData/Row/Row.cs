@@ -21,7 +21,18 @@ namespace SQLData.Row
             RowId = GetNewId();
         }
 
-        public abstract override string ToString();
+        public override string ToString()
+        {
+            PropertyInfo[] props = GetType().GetProperties();
+            string objectString = "";
+            foreach (PropertyInfo e in props)
+            {
+                bool ignored = e.GetCustomAttribute(typeof(Ignore)) == null ? false : true;
+                if (ignored == true) continue;
+                objectString += $"[{e.Name}] {e.GetValue(this, null)}";
+            }
+            return objectString;
+        }
 
         public object[] ToRowObject()
         {
@@ -39,6 +50,19 @@ namespace SQLData.Row
                 propsToReturn.Add(e.GetValue(this, null));
             }
             return propsToReturn.ToArray();
+        }
+
+        public int VisablePropertiesCount()
+        {
+            PropertyInfo[] props = GetType().GetProperties();
+            int count = 0;
+            foreach (PropertyInfo e in props)
+            {
+                bool ignored = e.GetCustomAttribute(typeof(Ignore)) == null ? false : true;
+                if (ignored == true) continue;
+                count++;
+            }
+            return count;
         }
 
         public long GetNewId()

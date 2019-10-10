@@ -13,7 +13,6 @@ namespace Project_QLDSV
     {
         public StudentTable(string tableName, int length = 100) : base(tableName, length)
         {
-            AddEventHandler();
         }
         protected override void AddEventHandler()
         {

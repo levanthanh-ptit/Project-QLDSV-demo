@@ -5,6 +5,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using SQLData;
+using Project_QLDSV.Mon_Hoc;
+using Project_QLDSV.GiaoTac_Table;
 
 namespace Project_QLDSV
 {
@@ -12,8 +14,10 @@ namespace Project_QLDSV
     {
         public static DataRepository dataRepository = new DataRepository();
         //Student table
-        public static StudentTable dSSV = new StudentTable("SINHVIEN");
-        public static StudentTableAdapter studentTableAdapter;
+        public static MonHocTable MonHocTable;
+        public static MonHocAdapter MonHocAdapter;
+        public static GiaoTacTable GiaoTacTable;
+        public static GiaoTacAdapter GiaoTacAdapter;
         public static Form1 Form1;
         public static void SetupServices()
         {
@@ -22,13 +26,17 @@ namespace Project_QLDSV
             dataRepository.LoginName = "sa";
             dataRepository.Password = "123";
             dataRepository.NewSqlConnection();
-            studentTableAdapter = new StudentTableAdapter(dSSV, dataRepository.sqlConnection);
-            Form1 = new Form1();
+            MonHocTable = new MonHocTable(100);
+            MonHocAdapter = new MonHocAdapter(MonHocTable, dataRepository.sqlConnection);
+            GiaoTacTable = new GiaoTacTable();
+            GiaoTacAdapter = new GiaoTacAdapter(GiaoTacTable, dataRepository.sqlConnection);
+            Form1 = new Form1(MonHocTable, MonHocAdapter, GiaoTacTable, GiaoTacAdapter);
         }
         public static void StartServices()
         {  
             dataRepository.ConnectServer();
-            studentTableAdapter.Fill();
+            MonHocAdapter.Fill();
+            GiaoTacAdapter.SP_Fill(0);
         }
         [STAThread]
         static void Main()

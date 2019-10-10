@@ -4,11 +4,11 @@ using SQLData.Table;
 
 namespace SQLData.Table
 {
-    abstract class Table<T> where T : Row.Row
+    public abstract class Table<T> where T : Row.Row
     {
         public string TableName { get; }
-        private T[] DataList { get; }
-        public int CurrentIndex;
+        public T[] DataList { get; set; }
+        public int CurrentIndex = -1;
         public T Current = null;
         public int Length = 0;
         private readonly int MaxLength;
@@ -20,10 +20,16 @@ namespace SQLData.Table
         {
             DataList = new T[length];
             MaxLength = length;
-            CurrentIndex = -1;
             TableName = tableName;
+            AddEventHandler();
         }
-
+        public void BeginRefill(int MaxLength)
+        {
+            DataList = new T[MaxLength];
+            CurrentIndex = -1;
+            Current = null;
+            Length = 0;
+        }
         public T DataAt(int index)
         {
             if (index < 0 || index >= MaxLength) return null;
@@ -72,6 +78,7 @@ namespace SQLData.Table
         {
             foreach (T row in DataList)
             {
+                if(row != null)
                 if (ItemKeyCompare(item, row) == 0) return row;
             }
             return null;
@@ -81,6 +88,7 @@ namespace SQLData.Table
         {
             for (int i = 0; i < Length; i++)
             {
+                if (DataList[i] != null)
                 if (ItemKeyCompare(item, DataList[i]) == 0) return i;
             }
             return -1;
@@ -143,13 +151,13 @@ namespace SQLData.Table
 
         protected abstract void AddEventHandler();
 
-        private void OnRowAdded(T t)
+        public void OnRowAdded(T t)
         {
             State = TableState.Changed;
             RowAdded?.Invoke(this, new RowEventArgs<T>(t));
         }
 
-        private void OnRowDeleted(T t)
+        public void OnRowDeleted(T t)
         {
             State = TableState.Changed;
             RowDeleted?.Invoke(this, new RowEventArgs<T>(t));
