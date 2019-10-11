@@ -19,7 +19,7 @@ namespace Project_QLDSV.GiaoTac_Table
             this.MaSV = MaSV;
             Pass = new int[Length];
         }
-        public new object[] ToRowObject()
+        public new object[] GetFieldObjectArray()
         {
             List<object> propsToReturn = new List<object>();
             propsToReturn.Add(MaSV);

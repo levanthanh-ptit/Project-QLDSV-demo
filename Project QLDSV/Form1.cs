@@ -55,7 +55,7 @@ namespace Project_QLDSV
             dataGridViewGiaotac.Columns.AddRange(columns);
             foreach (GiaoTac gt in GiaoTacTable.DataList)
             {
-                dataGridViewGiaotac.Rows.Add(gt.ToRowObject());
+                dataGridViewGiaotac.Rows.Add(gt.GetFieldObjectArray());
             }
         }
 
@@ -66,7 +66,7 @@ namespace Project_QLDSV
 
         private void MonHocTable_RowAdded(object sender, RowEventArgs<Mon_Hoc.MonHoc> e)
         {
-            dataGridViewMonHoc.Rows.Add(e.Row.ToRowObject());
+            dataGridViewMonHoc.Rows.Add(e.Row.GetFieldObjectArray());
         }
 
         private void trackBarMinSup_Scroll(object sender, EventArgs e)

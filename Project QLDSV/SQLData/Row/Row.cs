@@ -34,7 +34,7 @@ namespace SQLData.Row
             return objectString;
         }
 
-        public object[] ToRowObject()
+        public object[] GetFieldObjectArray()
         {
             PropertyInfo[] props = GetType().GetProperties();
             List<object> propsToReturn = new List<object>();
