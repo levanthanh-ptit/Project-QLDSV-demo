@@ -18,7 +18,7 @@ namespace Project_QLDSV
         public static MonHocAdapter MonHocAdapter;
         public static GiaoTacTable GiaoTacTable;
         public static GiaoTacAdapter GiaoTacAdapter;
-        public static Form1 Form1;
+        public static FormMain Form1;
         public static void SetupServices()
         {
             dataRepository.Server = "DESKTOP-1VI1ATV";
@@ -26,11 +26,11 @@ namespace Project_QLDSV
             dataRepository.LoginName = "sa";
             dataRepository.Password = "123";
             dataRepository.NewSqlConnection();
-            MonHocTable = new MonHocTable(100);
+            MonHocTable = new MonHocTable();
             MonHocAdapter = new MonHocAdapter(MonHocTable, dataRepository.sqlConnection);
             GiaoTacTable = new GiaoTacTable();
             GiaoTacAdapter = new GiaoTacAdapter(GiaoTacTable, dataRepository.sqlConnection);
-            Form1 = new Form1(MonHocTable, MonHocAdapter, GiaoTacTable, GiaoTacAdapter);
+            Form1 = new FormMain(MonHocTable, MonHocAdapter, GiaoTacTable, GiaoTacAdapter);
         }
         public static void StartServices()
         {  

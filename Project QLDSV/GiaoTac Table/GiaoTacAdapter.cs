@@ -14,7 +14,6 @@ namespace Project_QLDSV.GiaoTac_Table
         public GiaoTacAdapter(PivotTable<GiaoTac> table, SqlConnection connection) : base(table, connection)
         {
         }
-
         public override GiaoTac NewRowFromReader(SqlDataReader reader)
         {
             GiaoTac giaoTac = new GiaoTac(reader.GetString(0), reader.FieldCount);
@@ -24,7 +23,7 @@ namespace Project_QLDSV.GiaoTac_Table
                 {
                     giaoTac.Pass[i - 1] = reader.GetInt32(i);
                 }
-                catch (System.Data.SqlTypes.SqlNullValueException e)
+                catch (System.Data.SqlTypes.SqlNullValueException)
                 {
                     giaoTac.Pass[i - 1] = -1;
                 }

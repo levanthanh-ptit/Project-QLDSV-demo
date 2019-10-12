@@ -14,29 +14,36 @@ using System.Data.SqlClient;
 
 namespace Project_QLDSV
 {
-    public partial class Form1 : Form, ITableEventInterface
+    public partial class FormMain : Form, ITableEventInterface
     {
+        private int minSupCache;
         private MonHocTable MonHocTable;
         private MonHocAdapter MonHocAdapter;
         private GiaoTacTable GiaoTacTable;
         private GiaoTacAdapter GiaoTacAdapter;
-        public Form1(MonHocTable MonHocTable, MonHocAdapter MonHocAdapter, GiaoTacTable GiaoTacTable, GiaoTacAdapter GiaoTacAdapter)
+        public FormMain(MonHocTable MonHocTable, MonHocAdapter MonHocAdapter, GiaoTacTable GiaoTacTable, GiaoTacAdapter GiaoTacAdapter)
         {
             this.MonHocTable = MonHocTable;
             this.MonHocAdapter = MonHocAdapter;
             this.GiaoTacTable = GiaoTacTable;
             this.GiaoTacAdapter = GiaoTacAdapter;
             InitializeComponent();
+            minSupCache = trackBarMinSup.Value;
             AddEventHandler();
         }
-
         public void AddEventHandler()
         {
-            MonHocTable.RowAdded += MonHocTable_RowAdded;
-            MonHocTable.RowDeleted += MonHocTable_RowDeleted;
+            MonHocTable.TableFilled += MonHocTable_TableFilled;
             GiaoTacTable.TableFilled += GiaoTacTable_TableFilled;
         }
-
+        private void MonHocTable_TableFilled(object sender, EventArgs e)
+        {
+            dataGridViewMonHoc.Rows.Clear();
+            foreach (MonHoc m in MonHocTable)
+            {
+                dataGridViewMonHoc.Rows.Add(m.GetFieldObjectArray());
+            }
+        }
         private void GiaoTacTable_TableFilled(object sender, EventArgs e)
         {
             dataGridViewGiaotac.Rows.Clear();
@@ -53,36 +60,26 @@ namespace Project_QLDSV
                 columns[i] = column;
             }
             dataGridViewGiaotac.Columns.AddRange(columns);
-            foreach (GiaoTac gt in GiaoTacTable.DataList)
+            foreach (GiaoTac gt in GiaoTacTable)
             {
                 dataGridViewGiaotac.Rows.Add(gt.GetFieldObjectArray());
             }
         }
-
-        private void MonHocTable_RowDeleted(object sender, RowEventArgs<MonHoc> e)
-        {
-
-        }
-
-        private void MonHocTable_RowAdded(object sender, RowEventArgs<Mon_Hoc.MonHoc> e)
-        {
-            dataGridViewMonHoc.Rows.Add(e.Row.GetFieldObjectArray());
-        }
-
         private void trackBarMinSup_Scroll(object sender, EventArgs e)
         {
             labelMinSup.Text = trackBarMinSup.Value.ToString() + "%";
         }
-
         private void btnRefill_Click(object sender, EventArgs e)
         {
             try
             {
                 GiaoTacAdapter.SP_Fill(trackBarMinSup.Value);
+                minSupCache = trackBarMinSup.Value;
             }
             catch(SqlException ex)
             {
                 MessageBox.Show(ex.Message);
+                trackBarMinSup.Value = minSupCache;
             }
         }
     }

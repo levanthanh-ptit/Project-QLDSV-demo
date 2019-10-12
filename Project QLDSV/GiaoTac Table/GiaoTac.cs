@@ -13,6 +13,19 @@ namespace Project_QLDSV.GiaoTac_Table
         public string MaSV { get; set; }
         [Ignore]
         public int[] Pass { get; set; }
+        public object this[int index]
+        {
+            get
+            {
+                if (index == 0) return MaSV;
+                else return Pass[index - 1];
+            }
+            set
+            {
+                if (index == 0) MaSV = (string)value;
+                else Pass[index - 1] = (int)value;
+            }
+        }
         public GiaoTac() { }
         public GiaoTac(string MaSV, int Length)
         {
@@ -23,10 +36,9 @@ namespace Project_QLDSV.GiaoTac_Table
         {
             List<object> propsToReturn = new List<object>();
             propsToReturn.Add(MaSV);
-            foreach(int e in Pass)
-            {
-                propsToReturn.Add(e);
-            }
+            foreach (int e in Pass)
+                if (e != -1) propsToReturn.Add(e);
+                else propsToReturn.Add("Không thi");
             return propsToReturn.ToArray();
         }
     }

@@ -11,13 +11,12 @@ namespace SQLData.Row
     public class Key : Attribute
     {
         public string FeildName { get; set; }
-
-        public Key()
-        {
-        }
-        public Key(string FeildName)
-        {
-            this.FeildName = FeildName;
-        }
+        public Key() { }
+        public Key(string FeildName) => this.FeildName = FeildName;
+    }
+    [AttributeUsage(AttributeTargets.Property)]
+    public class Ignore : Attribute
+    {
+        public Ignore() { }
     }
 }

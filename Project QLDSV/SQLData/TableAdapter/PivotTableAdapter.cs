@@ -25,21 +25,15 @@ namespace SQLData.TableAdapter
                     string sql = $"DECLARE @return_value int EXEC @return_value = {SPString} SELECT 'Return Value' = @return_value";
                     SqlCommand command = new SqlCommand(sql, Connection);
                     SqlDataReader dataReader = command.ExecuteReader();
-                    dataReader.Read();
-                    int queryCount = dataReader.GetInt32(0);
-                    dataReader.NextResult();
-                    bool hasRow = dataReader.Read();
                     int VisableFields = new T().VisablePropertiesCount();
                     DataTable.DynamicFeildLabels = new string[dataReader.FieldCount - VisableFields];
                     for (int i = VisableFields; i < dataReader.FieldCount; i++)
                     {
                         DataTable.DynamicFeildLabels[i - VisableFields] = dataReader.GetName(i);
                     }
-                    DataTable.BeginRefill(queryCount);
-                    while (hasRow)
+                    while (dataReader.Read())
                     {
                         DataTable.Add(NewRowFromReader(dataReader));
-                        hasRow = dataReader.Read();
                     }
                     dataReader.Close();
                     ///

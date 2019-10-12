@@ -9,7 +9,7 @@ namespace Project_QLDSV.Mon_Hoc
 {
     public class MonHocTable : Table<MonHoc>
     {
-        public MonHocTable(int length = 100): base("MONHOC", length)
+        public MonHocTable(): base("MONHOC")
         {
         }
         public override int ItemKeyCompare(MonHoc t1, MonHoc t2)
