@@ -22,6 +22,7 @@ namespace SQLData.TableAdapter
             if (Connection.State == System.Data.ConnectionState.Open)
                 try
                 {
+                    DataTable.Clear();
                     string sql = $"DECLARE @return_value int EXEC @return_value = {SPString} SELECT 'Return Value' = @return_value";
                     SqlCommand command = new SqlCommand(sql, Connection);
                     SqlDataReader dataReader = command.ExecuteReader();
@@ -34,7 +35,7 @@ namespace SQLData.TableAdapter
                     while (dataReader.Read())
                     {
                         DataTable.Add(NewRowFromReader(dataReader));
-                    }
+                    }       
                     dataReader.Close();
                     ///
                     ///Table Event
