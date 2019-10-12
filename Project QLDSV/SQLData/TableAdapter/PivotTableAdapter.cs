@@ -27,10 +27,9 @@ namespace SQLData.TableAdapter
                     SqlCommand command = new SqlCommand(sql, Connection);
                     SqlDataReader dataReader = command.ExecuteReader();
                     int VisableFields = new T().VisablePropertiesCount();
-                    DataTable.DynamicFeildLabels = new string[dataReader.FieldCount - VisableFields];
                     for (int i = VisableFields; i < dataReader.FieldCount; i++)
                     {
-                        DataTable.DynamicFeildLabels[i - VisableFields] = dataReader.GetName(i);
+                        DataTable.DynamicFeildLabels.Add(dataReader.GetName(i));
                     }
                     while (dataReader.Read())
                     {

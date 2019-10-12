@@ -8,7 +8,12 @@ namespace SQLData.Table
 {
     public abstract class PivotTable<T> : Table<T> where T : Row.Row
     {
-        public string[] DynamicFeildLabels { get; set; } = new string[0];
+        public List<string> DynamicFeildLabels = new List<string>();
         public PivotTable(string tableName) : base(tableName) { }
+        public new void Clear()
+        {
+            DynamicFeildLabels.Clear();
+            base.Clear();
+        }
     }
 }

@@ -49,8 +49,8 @@ namespace Project_QLDSV
             dataGridViewGiaotac.Rows.Clear();
             dataGridViewGiaotac.Columns.Clear();
             dataGridViewGiaotac.Columns.Add(new DataGridViewTextBoxColumn() { Name = "MASVCol", HeaderText = "Mã SV" });
-            DataGridViewColumn[] columns = new DataGridViewColumn[GiaoTacTable.DynamicFeildLabels.Length];
-            for (int i = 0; i < GiaoTacTable.DynamicFeildLabels.Length; i++)
+            DataGridViewColumn[] columns = new DataGridViewColumn[GiaoTacTable.DynamicFeildLabels.Count];
+            for (int i = 0; i < GiaoTacTable.DynamicFeildLabels.Count; i++)
             {
                 DataGridViewColumn column = new DataGridViewTextBoxColumn()
                 {

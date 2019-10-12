@@ -13,6 +13,7 @@ namespace Project_QLDSV.GiaoTac_Table
         public string MaSV { get; set; }
         [Ignore]
         public int[] Pass { get; set; }
+        [Ignore]
         public object this[int index]
         {
             get

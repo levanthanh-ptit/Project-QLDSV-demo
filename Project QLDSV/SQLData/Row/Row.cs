@@ -60,7 +60,7 @@ namespace SQLData.Row
             {
                 bool ignored = e.GetCustomAttribute(typeof(Ignore)) == null ? false : true;
                 if (ignored == true) continue;
-                count++;
+                else count++;
             }
             return count;
         }
