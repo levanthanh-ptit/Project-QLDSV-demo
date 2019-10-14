@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace Project_QLDSV.DataMiner
 {
-    class AprioriSet : List<Apriori>
+    public class AprioriSet : List<Apriori>
     {
         public AprioriSet(GiaoTac_Table.GiaoTacTable giaoTacs)
         {
