@@ -49,7 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataMiner\Apriori.cs" />
-    <Compile Include="DataMiner\D_List.cs" />
+    <Compile Include="DataMiner\F_Item.cs" />
     <Compile Include="DataMiner\ItemSet.cs" />
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>

@@ -11,6 +11,7 @@ using Project_QLDSV.Mon_Hoc;
 using SQLData.Table;
 using Project_QLDSV.GiaoTac_Table;
 using System.Data.SqlClient;
+using Project_QLDSV.DataMiner;
 
 namespace Project_QLDSV
 {
@@ -21,6 +22,7 @@ namespace Project_QLDSV
         private MonHocAdapter MonHocAdapter;
         private GiaoTacTable GiaoTacTable;
         private GiaoTacAdapter GiaoTacAdapter;
+        private Apriori Apriori;
         public FormMain(MonHocTable MonHocTable, MonHocAdapter MonHocAdapter, GiaoTacTable GiaoTacTable, GiaoTacAdapter GiaoTacAdapter)
         {
             this.MonHocTable = MonHocTable;
@@ -64,6 +66,7 @@ namespace Project_QLDSV
             {
                 dataGridViewGiaotac.Rows.Add(gt.GetFieldObjectArray());
             }
+            Apriori = new Apriori(GiaoTacTable);
         }
         private void trackBarMinSup_Scroll(object sender, EventArgs e)
         {

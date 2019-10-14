@@ -14,7 +14,7 @@ namespace Project_QLDSV.GiaoTac_Table
         [Ignore]
         public int[] Pass { get; set; }
         [Ignore]
-        public object this[int index]
+        public int this[int index]
         {
             get
             {
@@ -22,7 +22,15 @@ namespace Project_QLDSV.GiaoTac_Table
             }
             set
             {
-                Pass[index] = (int)value;
+                Pass[index] = value;
+            }
+        }
+        [Ignore]
+        public int Count
+        {
+            get
+            {
+                return Pass.Length;
             }
         }
         public GiaoTac() { }
