@@ -51,6 +51,12 @@
     <Compile Include="DataMiner\Apriori.cs" />
     <Compile Include="DataMiner\F_Item.cs" />
     <Compile Include="DataMiner\ItemSet.cs" />
+    <Compile Include="FormApriori.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormApriori.Designer.cs">
+      <DependentUpon>FormApriori.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -80,6 +86,9 @@
     <Compile Include="SQLData\SQLDataException\SQLDataException.cs" />
     <Compile Include="SQLData\Table\Table.cs" />
     <Compile Include="SQLData\TableAdapter\TableAdapter.cs" />
+    <EmbeddedResource Include="FormApriori.resx">
+      <DependentUpon>FormApriori.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
