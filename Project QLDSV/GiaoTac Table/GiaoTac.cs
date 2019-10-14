@@ -18,13 +18,11 @@ namespace Project_QLDSV.GiaoTac_Table
         {
             get
             {
-                if (index == 0) return MaSV;
-                else return Pass[index - 1];
+                return Pass[index];
             }
             set
             {
-                if (index == 0) MaSV = (string)value;
-                else Pass[index - 1] = (int)value;
+                Pass[index] = (int)value;
             }
         }
         public GiaoTac() { }
