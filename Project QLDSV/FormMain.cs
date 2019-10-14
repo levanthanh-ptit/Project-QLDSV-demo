@@ -85,5 +85,12 @@ namespace Project_QLDSV
                 trackBarMinSup.Value = minSupCache;
             }
         }
+
+        private void BtnGenItemset_Click(object sender, EventArgs e)
+        {
+            
+            FormApriori formApriori = new FormApriori();
+            formApriori.Show();
+        }
     }
 }
