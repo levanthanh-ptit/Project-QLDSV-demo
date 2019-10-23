@@ -16,16 +16,16 @@ namespace Project_QLDSV.GiaoTac_Table
         }
         public override GiaoTac NewRowFromReader(SqlDataReader reader)
         {
-            GiaoTac giaoTac = new GiaoTac(reader.GetString(0), reader.FieldCount);
+            GiaoTac giaoTac = new GiaoTac(reader.GetString(0));
             for(int i = 1; i < reader.FieldCount; i++)
             {
                 try
                 {
-                    giaoTac.Pass[i - 1] = reader.GetInt32(i);
+                    giaoTac.Pass.Add(reader.GetInt32(i));
                 }
                 catch (System.Data.SqlTypes.SqlNullValueException)
                 {
-                    giaoTac.Pass[i - 1] = -1;
+                    giaoTac.Pass.Add(-1);
                 }
             }
             return giaoTac;
