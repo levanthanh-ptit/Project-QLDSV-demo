@@ -29,18 +29,20 @@
         private void InitializeComponent()
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.CADIDATE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewListF = new System.Windows.Forms.DataGridView();
             this.TID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.CADIDATE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewListL = new System.Windows.Forms.DataGridView();
+            this.CANDIDATE_C = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SUPPORT = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
             this.btnBack = new System.Windows.Forms.Button();
             this.btnNext = new System.Windows.Forms.Button();
-            this.CANDIDATE_C = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SUPPORT = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewListF)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewListL)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -50,35 +52,28 @@
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Controls.Add(this.dataGridView1, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.dataGridView2, 1, 0);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(4, 41);
+            this.tableLayoutPanel1.Controls.Add(this.dataGridViewListF, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.dataGridViewListL, 1, 0);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(4, 83);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1003, 271);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1003, 229);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
-            // dataGridView1
+            // dataGridViewListF
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewListF.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewListF.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.TID,
             this.CADIDATE});
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(3, 3);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(495, 265);
-            this.dataGridView1.TabIndex = 0;
-            // 
-            // CADIDATE
-            // 
-            this.CADIDATE.HeaderText = "CADIDATE";
-            this.CADIDATE.MinimumWidth = 6;
-            this.CADIDATE.Name = "CADIDATE";
-            this.CADIDATE.Width = 125;
+            this.dataGridViewListF.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridViewListF.Location = new System.Drawing.Point(3, 3);
+            this.dataGridViewListF.Name = "dataGridViewListF";
+            this.dataGridViewListF.RowHeadersWidth = 51;
+            this.dataGridViewListF.RowTemplate.Height = 24;
+            this.dataGridViewListF.Size = new System.Drawing.Size(495, 223);
+            this.dataGridViewListF.TabIndex = 0;
             // 
             // TID
             // 
@@ -87,19 +82,40 @@
             this.TID.Name = "TID";
             this.TID.Width = 125;
             // 
-            // dataGridView2
+            // CADIDATE
             // 
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.CADIDATE.HeaderText = "CADIDATE";
+            this.CADIDATE.MinimumWidth = 6;
+            this.CADIDATE.Name = "CADIDATE";
+            this.CADIDATE.Width = 125;
+            // 
+            // dataGridViewListL
+            // 
+            this.dataGridViewListL.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewListL.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.CANDIDATE_C,
             this.SUPPORT});
-            this.dataGridView2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView2.Location = new System.Drawing.Point(504, 3);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.RowHeadersWidth = 51;
-            this.dataGridView2.RowTemplate.Height = 24;
-            this.dataGridView2.Size = new System.Drawing.Size(496, 265);
-            this.dataGridView2.TabIndex = 1;
+            this.dataGridViewListL.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridViewListL.Location = new System.Drawing.Point(504, 3);
+            this.dataGridViewListL.Name = "dataGridViewListL";
+            this.dataGridViewListL.RowHeadersWidth = 51;
+            this.dataGridViewListL.RowTemplate.Height = 24;
+            this.dataGridViewListL.Size = new System.Drawing.Size(496, 223);
+            this.dataGridViewListL.TabIndex = 1;
+            // 
+            // CANDIDATE_C
+            // 
+            this.CANDIDATE_C.HeaderText = "CANDIDATE";
+            this.CANDIDATE_C.MinimumWidth = 6;
+            this.CANDIDATE_C.Name = "CANDIDATE_C";
+            this.CANDIDATE_C.Width = 125;
+            // 
+            // SUPPORT
+            // 
+            this.SUPPORT.HeaderText = "SUPPORT";
+            this.SUPPORT.MinimumWidth = 6;
+            this.SUPPORT.Name = "SUPPORT";
+            this.SUPPORT.Width = 125;
             // 
             // label1
             // 
@@ -137,25 +153,33 @@
             this.btnNext.UseVisualStyleBackColor = true;
             this.btnNext.Click += new System.EventHandler(this.BtnNext_Click);
             // 
-            // CANDIDATE_C
+            // label2
             // 
-            this.CANDIDATE_C.HeaderText = "CANDIDATE";
-            this.CANDIDATE_C.MinimumWidth = 6;
-            this.CANDIDATE_C.Name = "CANDIDATE_C";
-            this.CANDIDATE_C.Width = 125;
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(3, 56);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(57, 20);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "Tập F";
             // 
-            // SUPPORT
+            // label3
             // 
-            this.SUPPORT.HeaderText = "SUPPORT";
-            this.SUPPORT.MinimumWidth = 6;
-            this.SUPPORT.Name = "SUPPORT";
-            this.SUPPORT.Width = 125;
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(508, 59);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(57, 20);
+            this.label3.TabIndex = 5;
+            this.label3.Text = "Tập L";
             // 
             // FormApriori
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1009, 450);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.btnNext);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.label1);
@@ -163,8 +187,8 @@
             this.Name = "FormApriori";
             this.Text = "FormApriori";
             this.tableLayoutPanel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewListF)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewListL)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -173,14 +197,16 @@
         #endregion
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.DataGridViewTextBoxColumn TID;
         private System.Windows.Forms.DataGridViewTextBoxColumn CADIDATE;
-        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.DataGridView dataGridViewListL;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnBack;
         private System.Windows.Forms.Button btnNext;
         private System.Windows.Forms.DataGridViewTextBoxColumn CANDIDATE_C;
         private System.Windows.Forms.DataGridViewTextBoxColumn SUPPORT;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.DataGridView dataGridViewListF;
     }
 }

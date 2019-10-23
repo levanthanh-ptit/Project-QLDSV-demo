@@ -22,7 +22,7 @@ namespace Project_QLDSV.DataMiner
                 f_Item.TID = giaoTacs[i].MaSV;
                 for (int j = 0; j < giaoTacs[i].Count; j++)
                 {
-                    if (giaoTacs[i][j] == 1)
+                    if (giaoTacs[i][j] == 1 || giaoTacs[i][j] == -1)
                     {
                         f_Item.Add(new List<int>() { j + 1 });
                         this[0].C_List[j].Support++;
@@ -30,12 +30,20 @@ namespace Project_QLDSV.DataMiner
                 }
                 this[0].F_List.Add(f_Item);
             }
-            string test = "";
-            foreach(ItemSet e in this[0].C_List)
-            {
-                test += e.Support + ", ";
-            }
-            MessageBox.Show(test);
+            //string test = "";
+            //foreach (ItemSet e in this[0].C_List)
+            //{
+            //    foreach(int a in e)
+            //    {
+            //        test += a +".";
+            //    }
+            //    test += "-" + e.Support + ", ";
+            //}
+            //MessageBox.Show(test);
+        }
+        public AprioriSet(int k)
+        {
+
         }
         public int GetIndex(int K)
         {
@@ -44,12 +52,12 @@ namespace Project_QLDSV.DataMiner
         }
         public Apriori GetItem(int K)
         {
-            if (this[K - 1] == null) return this[K -1];
+            if (this[K - 1] == null) return this[K - 1];
             else return null;
         }
         private void AprioriGen(int K)
         {
-            List<ItemSet> c_List = new List<ItemSet>(this[K-2].C_List);
+            List<ItemSet> c_List = new List<ItemSet>(this[K - 2].C_List);
         }
         public void NextStep()
         {

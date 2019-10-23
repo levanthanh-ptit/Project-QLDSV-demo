@@ -89,9 +89,9 @@ namespace Project_QLDSV
 
         private void BtnGenItemset_Click(object sender, EventArgs e)
         {
-            
-            FormApriori formApriori = new FormApriori();
+           
+            FormApriori formApriori = new FormApriori(GiaoTacTable);
             formApriori.Show();
         }
     }
-}
+}         
