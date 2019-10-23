@@ -17,5 +17,12 @@ namespace Project_QLDSV.Mon_Hoc
         {
             MaMH = maMH;
         }
+        public new object[] GetFieldObjectArray()
+        {
+            List<object> feilds = new List<object>();
+            feilds.Add(RowId);
+            feilds.AddRange(base.GetFieldObjectArray());
+            return feilds.ToArray();
+        }
     }
 }

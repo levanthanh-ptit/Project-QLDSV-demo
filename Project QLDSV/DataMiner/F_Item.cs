@@ -10,9 +10,9 @@ namespace Project_QLDSV.DataMiner
     {
         public string TID { get; set; }
 
-        public string GetItemsString()
+        public override string ToString()
         {
-            string itemsString = "";
+            string itemsString = "[";
             foreach (List<int> list in this)
             {
                 itemsString += "{";
@@ -21,10 +21,10 @@ namespace Project_QLDSV.DataMiner
                     itemsString += item + ", ";
                 }
                 itemsString = itemsString.Trim(new Char[] { ',', ' ' });
-                itemsString += "}, ";
+                itemsString += "},";
             }
             itemsString = itemsString.Trim(new Char[] { ',', ' ' });
-            return itemsString;
+            return itemsString +="]\n";
         }
     }
 }

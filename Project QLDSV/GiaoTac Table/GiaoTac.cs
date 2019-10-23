@@ -12,7 +12,7 @@ namespace Project_QLDSV.GiaoTac_Table
         [Key]
         public string MaSV { get; set; }
         [Ignore]
-        public int[] Pass { get; set; }
+        public List<int> Pass { get; set; } = new List<int>();
         [Ignore]
         public int this[int index]
         {
@@ -30,14 +30,13 @@ namespace Project_QLDSV.GiaoTac_Table
         {
             get
             {
-                return Pass.Length;
+                return Pass.Count;
             }
         }
         public GiaoTac() { }
-        public GiaoTac(string MaSV, int Length)
+        public GiaoTac(string MaSV)
         {
             this.MaSV = MaSV;
-            Pass = new int[Length];
         }
         public new object[] GetFieldObjectArray()
         {
