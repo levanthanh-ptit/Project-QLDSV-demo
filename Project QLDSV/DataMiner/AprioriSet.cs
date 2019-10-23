@@ -60,11 +60,11 @@ namespace Project_QLDSV.DataMiner
             }
             return true;
         }
-        private List<List<int>> AprioriGen(int K)
+        private List<ItemSet> AprioriGen(int K)
         {
             int position = GetIndex(K);
             List<ItemSet> l_Current = this[position].L_List;
-            List<List<int>> c_List = new List<List<int>>();
+            List<ItemSet> c_List = new List<ItemSet>();
             
             for (int i = 0; i < l_Current.Count - 1; i++) // O((n^2)/2)
             { 
@@ -83,7 +83,7 @@ namespace Project_QLDSV.DataMiner
         public void NextStep()
         {
             Apriori apriori = new Apriori(Count);
-            List<List<int>> c_List = AprioriGen(Count);
+            List<ItemSet> c_List = AprioriGen(Count);
             string str = "";
             foreach (List<int> l in c_List)
             {
