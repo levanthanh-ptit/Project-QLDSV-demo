@@ -11,7 +11,9 @@ namespace Project_QLDSV.DataMiner
         public List<F_Item> F_List = new List<F_Item>();
         public List<ItemSet> L_List = new List<ItemSet>();
         public int K { get; }
-        public Apriori(int K) { this.K = K; }
+        public Apriori(int K) {
+            this.K = K;
+        }
         public override string ToString()
         {
             string str = "----F_List:::\n";
