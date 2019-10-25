@@ -33,13 +33,6 @@ namespace Project_QLDSV.DataMiner
                 if (isZero) continue;
                 this[0].F_List.Add(f_Item);
             }
-            string test = "";
-            foreach (ItemSet e in this[0].L_List)
-            {
-                test += e.Support + ", ";
-            }
-            MessageBox.Show(test, "Item sets of C[0]");
-            MessageBox.Show(this[0].ToString());
         }
         public int GetIndex(int K)
         {
@@ -48,7 +41,7 @@ namespace Project_QLDSV.DataMiner
         }
         public Apriori GetItem(int K)
         {
-            if (this[K - 1] == null) return this[K - 1];
+            if (this[K - 1] != null) return this[K - 1];
             else return null;
         }
         private bool PrefixEqual(ItemSet list1, ItemSet list2)
@@ -80,20 +73,98 @@ namespace Project_QLDSV.DataMiner
             }
             return c_List;
         }
-        public void NextStep()
+
+        public void NextStep(int K)
         {
-            Apriori apriori = new Apriori(Count);
-            List<ItemSet> c_List = AprioriGen(Count);
-            string str = "";
-            foreach (List<int> l in c_List)
+            if(K < this.Count())
             {
-                foreach (int v in l)
-                {
-                    str += v + " ";
-                }
-                str += "\n";
+                FormApriori formApriori1 = new FormApriori(this,K+1);
+                formApriori1.Show();
+                return;
             }
-            MessageBox.Show(str);
+            Apriori apriori = new Apriori(Count);
+            apriori = GetItem(Count);
+            Apriori aprioriNext = new Apriori(Count+1);
+            List<ItemSet> c_List = AprioriGen(Count);
+            if (c_List.Count == 0)
+            {
+                FormGenLaw formGenLaw = new FormGenLaw(this);
+                formGenLaw.Show();
+                return;
+            }
+            for (int i = 0; i < c_List.Count; i++)
+            {
+                List<int> ItemC_NotSuffix = new List<int>(c_List[i]);
+                ItemC_NotSuffix.RemoveAt(ItemC_NotSuffix.Count - 1);
+                List<int> ItemC_NotNearSuffix = new List<int>(c_List[i]);
+                ItemC_NotNearSuffix.RemoveAt(ItemC_NotNearSuffix.Count - 2);
+                foreach (F_Item f_item in apriori.F_List)
+                {
+                    if(ContainsList(f_item, ItemC_NotSuffix) && ContainsList(f_item, ItemC_NotNearSuffix))
+                    {
+                        c_List[i].Support++;
+                        bool notExistTID = true;
+                        for(int j = 0; j < aprioriNext.F_List.Count; j++)
+                        {
+                            if(aprioriNext.F_List[j].TID == f_item.TID)
+                            {
+                                aprioriNext.F_List[j].Add(c_List[i]);
+                                notExistTID = false;
+                                break;
+                            }
+                        }
+                        if (notExistTID)
+                        {
+                            F_Item f = new F_Item();
+                            f.TID = f_item.TID;
+                            f.Add(c_List[i]);
+                            aprioriNext.F_List.Add(f);
+                        }
+                    }
+                }
+            }
+            float minSup = ((float)Program.MinSupport/100)* aprioriNext.F_List.Count;
+            for (int j = 0; j < c_List.Count; j++)
+            {
+                if(c_List[j].Support >= minSup)
+                {
+                    ItemSet item = new ItemSet();
+                    item.Support = c_List[j].Support;
+                    item.AddRange(c_List[j]);
+                    aprioriNext.L_List.Add(item);
+                }
+               
+            }
+            Add(aprioriNext);
+            FormApriori formApriori = new FormApriori(this, K+1);
+            formApriori.Show();
         }
+        public void BackStep(int K)
+        {
+            if (K > 1)
+            {
+                FormApriori formApriori = new FormApriori(this, K-1);
+                formApriori.Show();
+                return;
+            }
+            else
+            {
+                MessageBox.Show("L1 is min collection Apriori! Can't back");
+                FormApriori formApriori = new FormApriori(this, K);
+                formApriori.Show();
+            }
+        }
+        public bool ContainsList(List<List<int>> listParent, List<int> listChild)
+        {
+            foreach(List<int> itemParent in listParent)
+            {
+                if (itemParent.SequenceEqual(listChild))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+      
     }
 }

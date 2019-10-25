@@ -21,6 +21,7 @@ namespace Project_QLDSV
         public static GiaoTacAdapter GiaoTacAdapter;
         public static FormMain FormMain;
         public static AprioriSet AprioriSet;
+        public static int MinSupport = 0;
         public static void SetupServices()
         {
             dataRepository.Server = "DESKTOP-EBVE71U\\LOUISSQLSERVER";

@@ -67,12 +67,12 @@ namespace Project_QLDSV
             {
                 dataGridViewGiaotac.Rows.Add(gt.GetFieldObjectArray());
             }
-            AprioriSet = new AprioriSet(GiaoTacTable);
-            AprioriSet.NextStep();
+          
         }
         private void trackBarMinSup_Scroll(object sender, EventArgs e)
         {
             labelMinSup.Text = trackBarMinSup.Value.ToString() + "%";
+            Program.MinSupport = trackBarMinSup.Value;
         }
         private void btnRefill_Click(object sender, EventArgs e)
         {
@@ -90,8 +90,8 @@ namespace Project_QLDSV
 
         private void BtnGenItemset_Click(object sender, EventArgs e)
         {
-            
-            FormApriori formApriori = new FormApriori(AprioriSet);
+            AprioriSet = new AprioriSet(GiaoTacTable);
+            FormApriori formApriori = new FormApriori(AprioriSet,1);
             formApriori.Show();
         }
     }
