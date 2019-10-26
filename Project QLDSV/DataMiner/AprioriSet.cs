@@ -9,6 +9,8 @@ namespace Project_QLDSV.DataMiner
 {
     public class AprioriSet : List<Apriori>
     {
+        public bool EndFlag { get; private set; } = false;
+        public event EventHandler<EventArgs> OnAprioriEnd;
         public AprioriSet(GiaoTac_Table.GiaoTacTable giaoTacs)
         {
             Add(new Apriori(1));
@@ -58,12 +60,12 @@ namespace Project_QLDSV.DataMiner
             int position = GetIndex(K);
             List<ItemSet> l_Current = this[position].L_List;
             List<ItemSet> c_List = new List<ItemSet>();
-            
+
             for (int i = 0; i < l_Current.Count - 1; i++) // O((n^2)/2)
-            { 
+            {
                 for (int j = i + 1; j < l_Current.Count; j++)
                 {
-                    if (PrefixEqual(l_Current[i],l_Current[j]))
+                    if (PrefixEqual(l_Current[i], l_Current[j]))
                     {
                         ItemSet c_item = new ItemSet(l_Current[i]); //O(n)
                         c_item.Add(l_Current[j][l_Current[j].Count - 1]);
@@ -74,39 +76,32 @@ namespace Project_QLDSV.DataMiner
             return c_List;
         }
 
-        public void NextStep(int K)
+        public void NextStep()
         {
-            if(K < this.Count())
-            {
-                FormApriori formApriori1 = new FormApriori(this,K+1);
-                formApriori1.Show();
-                return;
-            }
-            Apriori apriori = new Apriori(Count);
-            apriori = GetItem(Count);
-            Apriori aprioriNext = new Apriori(Count+1);
+            Apriori apriori = GetItem(Count);
             List<ItemSet> c_List = AprioriGen(Count);
             if (c_List.Count == 0)
             {
-                FormGenLaw formGenLaw = new FormGenLaw(this);
-                formGenLaw.Show();
+                OnAprioriEnd.Invoke(this, new EventArgs());
+                EndFlag = true;
                 return;
             }
-            for (int i = 0; i < c_List.Count; i++)
+            Apriori aprioriNext = new Apriori(Count + 1);
+            for (int i = 0; i < c_List.Count; i++) //O(n)
             {
-                List<int> ItemC_NotSuffix = new List<int>(c_List[i]);
+                List<int> ItemC_NotSuffix = new List<int>(c_List[i]); //O(n)
                 ItemC_NotSuffix.RemoveAt(ItemC_NotSuffix.Count - 1);
-                List<int> ItemC_NotNearSuffix = new List<int>(c_List[i]);
+                List<int> ItemC_NotNearSuffix = new List<int>(c_List[i]); //O(n)
                 ItemC_NotNearSuffix.RemoveAt(ItemC_NotNearSuffix.Count - 2);
-                foreach (F_Item f_item in apriori.F_List)
+                foreach (F_Item f_item in apriori.F_List) //O(n^4)
                 {
-                    if(ContainsList(f_item, ItemC_NotSuffix) && ContainsList(f_item, ItemC_NotNearSuffix))
+                    if (ContainsList(f_item, ItemC_NotSuffix) && ContainsList(f_item, ItemC_NotNearSuffix)) //O(n^2)
                     {
                         c_List[i].Support++;
                         bool notExistTID = true;
-                        for(int j = 0; j < aprioriNext.F_List.Count; j++)
+                        for (int j = 0; j < aprioriNext.F_List.Count; j++) //O(n)
                         {
-                            if(aprioriNext.F_List[j].TID == f_item.TID)
+                            if (aprioriNext.F_List[j].TID == f_item.TID)
                             {
                                 aprioriNext.F_List[j].Add(c_List[i]);
                                 notExistTID = false;
@@ -123,40 +118,22 @@ namespace Project_QLDSV.DataMiner
                     }
                 }
             }
-            float minSup = ((float)Program.MinSupport/100)* aprioriNext.F_List.Count;
-            for (int j = 0; j < c_List.Count; j++)
+            float minSup = ((float)Program.MinSupport / 100) * aprioriNext.F_List.Count;
+            for (int j = 0; j < c_List.Count; j++) //O(n)
             {
-                if(c_List[j].Support >= minSup)
+                if (c_List[j].Support >= minSup)
                 {
                     ItemSet item = new ItemSet();
                     item.Support = c_List[j].Support;
                     item.AddRange(c_List[j]);
                     aprioriNext.L_List.Add(item);
                 }
-               
             }
             Add(aprioriNext);
-            FormApriori formApriori = new FormApriori(this, K+1);
-            formApriori.Show();
-        }
-        public void BackStep(int K)
-        {
-            if (K > 1)
-            {
-                FormApriori formApriori = new FormApriori(this, K-1);
-                formApriori.Show();
-                return;
-            }
-            else
-            {
-                MessageBox.Show("L1 is min collection Apriori! Can't back");
-                FormApriori formApriori = new FormApriori(this, K);
-                formApriori.Show();
-            }
         }
         public bool ContainsList(List<List<int>> listParent, List<int> listChild)
         {
-            foreach(List<int> itemParent in listParent)
+            foreach (List<int> itemParent in listParent)
             {
                 if (itemParent.SequenceEqual(listChild))
                 {
@@ -165,6 +142,6 @@ namespace Project_QLDSV.DataMiner
             }
             return false;
         }
-      
+
     }
 }

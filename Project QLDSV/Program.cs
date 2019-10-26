@@ -21,10 +21,10 @@ namespace Project_QLDSV
         public static GiaoTacAdapter GiaoTacAdapter;
         public static FormMain FormMain;
         public static AprioriSet AprioriSet;
-        public static int MinSupport = 0;
+        public static int MinSupport = 25;
         public static void SetupServices()
         {
-            dataRepository.Server = "DESKTOP-EBVE71U\\LOUISSQLSERVER";
+            dataRepository.Server = server.Default.ServerName;
             dataRepository.DataBase = "QLDSV";
             dataRepository.LoginName = "sa";
             dataRepository.Password = "123";
@@ -33,13 +33,13 @@ namespace Project_QLDSV
             MonHocAdapter = new MonHocAdapter(MonHocTable, dataRepository.sqlConnection);
             GiaoTacTable = new GiaoTacTable();
             GiaoTacAdapter = new GiaoTacAdapter(GiaoTacTable, dataRepository.sqlConnection);
-            FormMain = new FormMain(MonHocTable, MonHocAdapter, GiaoTacTable, GiaoTacAdapter, AprioriSet);
+            FormMain = new FormMain(MonHocTable, MonHocAdapter, GiaoTacTable, GiaoTacAdapter);
         }
         public static void StartServices()
         {  
             dataRepository.ConnectServer();
             MonHocAdapter.Fill();
-            GiaoTacAdapter.SP_Fill(0);
+            GiaoTacAdapter.SP_Fill(MinSupport);
         }
         [STAThread]
         static void Main()

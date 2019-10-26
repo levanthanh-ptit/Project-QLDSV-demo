@@ -14,46 +14,69 @@ namespace Project_QLDSV
     public partial class FormApriori : Form
     {
         private AprioriSet AprioriSet;
-        private int K = 0;
-        public FormApriori(AprioriSet AprioriSet, int K)
+        private int K;
+
+        public FormApriori(int K = 1)
         {
-            this.AprioriSet = AprioriSet;
+            AprioriSet = Program.AprioriSet;
+            AprioriSet = new AprioriSet(Program.GiaoTacTable);
             this.K = K;
             InitializeComponent();
-            AddEventHandler();
+            Refill();
             this.txtListF.Text = "Tập F" + K;
             this.txtListL.Text = "Tập L" + K;
+            AprioriSet.OnAprioriEnd += AprioriSet_OnAprioriEnd;
         }
-        public void AddEventHandler()
+
+        private void SetK(int K)
+        {
+            this.K = K;
+            if (K == 1) btnBack.Enabled = false;
+            else btnBack.Enabled = true;
+            if (K == AprioriSet.Count && AprioriSet.EndFlag) btnNext.Enabled = false;
+            else btnNext.Enabled = true;
+        }
+
+        private void AprioriSet_OnAprioriEnd(object sender, EventArgs e)
+        {
+            // do something
+        }
+
+        public void Refill()
         {
             this.CollectionF_Filled();
             this.CollectionL_Filled();
         }
         private void CollectionF_Filled()
         {
-            foreach (F_Item f_item in AprioriSet[K-1].F_List)
+            dataGridViewListF.Rows.Clear();
+            foreach (F_Item f_item in AprioriSet[K - 1].F_List)
             {
                 dataGridViewListF.Rows.Add(f_item.TID, f_item.ToString());
             }
         }
         private void CollectionL_Filled()
         {
-            foreach (ItemSet itemSet in AprioriSet[K-1].L_List)
+            dataGridViewListL.Rows.Clear();
+            foreach (ItemSet itemSet in AprioriSet[K - 1].L_List)
             {
-                dataGridViewListL.Rows.Add(itemSet.ToString(),itemSet.Support);
+                dataGridViewListL.Rows.Add(itemSet.ToString(), itemSet.Support);
             }
         }
         private void BtnBack_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            AprioriSet.BackStep(K);
+            SetK(K - 1);
+            if (K == 1) btnBack.Enabled = false;
+            Refill();
+
         }
 
         private void BtnNext_Click(object sender, EventArgs e)
         {
-            
-            AprioriSet.NextStep(K);
-            this.Hide();
+            if (!AprioriSet.EndFlag && K + 1 > AprioriSet.Count) AprioriSet.NextStep();
+            if (K < AprioriSet.Count) SetK(K + 1);
+            else SetK(K);
+            Refill();
         }
     }
 }

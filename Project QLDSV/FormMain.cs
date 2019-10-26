@@ -22,15 +22,15 @@ namespace Project_QLDSV
         private MonHocAdapter MonHocAdapter;
         private GiaoTacTable GiaoTacTable;
         private GiaoTacAdapter GiaoTacAdapter;
-        private AprioriSet AprioriSet;
-        public FormMain(MonHocTable MonHocTable, MonHocAdapter MonHocAdapter, GiaoTacTable GiaoTacTable, GiaoTacAdapter GiaoTacAdapter, AprioriSet AprioriSet)
+        public FormMain(MonHocTable MonHocTable, MonHocAdapter MonHocAdapter, GiaoTacTable GiaoTacTable, GiaoTacAdapter GiaoTacAdapter)
         {
             this.MonHocTable = MonHocTable;
             this.MonHocAdapter = MonHocAdapter;
             this.GiaoTacTable = GiaoTacTable;
             this.GiaoTacAdapter = GiaoTacAdapter;
-            this.AprioriSet = AprioriSet;
             InitializeComponent();
+            trackBarMinSup.Value = Program.MinSupport;
+            labelMinSup.Text = Program.MinSupport + "%";
             minSupCache = trackBarMinSup.Value;
             AddEventHandler();
         }
@@ -90,8 +90,7 @@ namespace Project_QLDSV
 
         private void BtnGenItemset_Click(object sender, EventArgs e)
         {
-            AprioriSet = new AprioriSet(GiaoTacTable);
-            FormApriori formApriori = new FormApriori(AprioriSet,1);
+            FormApriori formApriori = new FormApriori();
             formApriori.Show();
         }
     }
