@@ -76,6 +76,9 @@ namespace Project_QLDSV
         }
         private void btnRefill_Click(object sender, EventArgs e)
         {
+            btnRefill.Enabled = false;
+            btnGenItemset.Enabled = false;
+            UseWaitCursor = true;
             try
             {
                 GiaoTacAdapter.SP_Fill(trackBarMinSup.Value);
@@ -86,6 +89,9 @@ namespace Project_QLDSV
                 MessageBox.Show(ex.Message);
                 trackBarMinSup.Value = minSupCache;
             }
+            btnRefill.Enabled = true;
+            btnGenItemset.Enabled = true;
+            UseWaitCursor = false;
         }
 
         private void BtnGenItemset_Click(object sender, EventArgs e)
