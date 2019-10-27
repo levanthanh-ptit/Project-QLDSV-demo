@@ -89,13 +89,9 @@ namespace Project_QLDSV.DataMiner
             Apriori aprioriNext = new Apriori(Count + 1);
             for (int i = 0; i < c_List.Count; i++) //O(n)
             {
-                List<int> ItemC_NotSuffix = new List<int>(c_List[i]); //O(n)
-                ItemC_NotSuffix.RemoveAt(ItemC_NotSuffix.Count - 1);
-                List<int> ItemC_NotNearSuffix = new List<int>(c_List[i]); //O(n)
-                ItemC_NotNearSuffix.RemoveAt(ItemC_NotNearSuffix.Count - 2);
-                foreach (F_Item f_item in apriori.F_List) //O(n^4)
+                foreach (F_Item f_item in apriori.F_List) // O(n^3)
                 {
-                    if (ContainsList(f_item, ItemC_NotSuffix) && ContainsList(f_item, ItemC_NotNearSuffix)) //O(n^2)
+                    if (ContainsList(f_item, c_List[i], c_List[i].Count -1) && ContainsList(f_item, c_List[i], c_List[i].Count - 2)) //O(n^2)
                     {
                         c_List[i].Support++;
                         bool notExistTID = true;
@@ -142,6 +138,28 @@ namespace Project_QLDSV.DataMiner
             }
             return false;
         }
-
+        public bool ContainsList(List<List<int>> f_list, List<int> c_list, int ignoreIndex)
+        {
+            foreach (List<int> itemParent in f_list)
+            {
+                if (itemParent.Count != c_list.Count - 1) continue;
+                bool isEqual = true;
+                int i = 0;
+                int j = 0;
+                while(i < itemParent.Count)
+                {
+                    if (j == ignoreIndex) j++;
+                    if (itemParent[i] != c_list[j])
+                    {
+                        isEqual = false;
+                        break;
+                    }
+                    i++;
+                    j++;
+                }
+                if (isEqual) return true;
+            }
+            return false;
+        }
     }
 }
