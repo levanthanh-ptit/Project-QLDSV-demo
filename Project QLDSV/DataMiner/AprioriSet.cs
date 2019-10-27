@@ -13,6 +13,7 @@ namespace Project_QLDSV.DataMiner
         public event EventHandler<EventArgs> OnAprioriEnd;
         public AprioriSet(GiaoTac_Table.GiaoTacTable giaoTacs)
         {
+            Console.Out.WriteLine("AprioriSet constructor:::"+DateTime.Now.ToString());
             Add(new Apriori(1));
             for (int i = 0; i < giaoTacs.ColumnCount; i++)
             {
@@ -35,6 +36,7 @@ namespace Project_QLDSV.DataMiner
                 if (isZero) continue;
                 this[0].F_List.Add(f_Item);
             }
+            Console.Out.WriteLine("AprioriSet constructor:::" + DateTime.Now.ToString());
         }
         public int GetIndex(int K)
         {
@@ -78,6 +80,7 @@ namespace Project_QLDSV.DataMiner
 
         public void NextStep()
         {
+            Console.Out.WriteLine("AprioriSet NextStep:::" + DateTime.Now.ToString());
             Apriori apriori = GetItem(Count);
             List<ItemSet> c_List = AprioriGen(Count);
             if (c_List.Count == 0)
@@ -126,6 +129,7 @@ namespace Project_QLDSV.DataMiner
                 }
             }
             Add(aprioriNext);
+            Console.Out.WriteLine("AprioriSet NextStep:::" + DateTime.Now.ToString());
         }
         public bool ContainsList(List<List<int>> listParent, List<int> listChild)
         {

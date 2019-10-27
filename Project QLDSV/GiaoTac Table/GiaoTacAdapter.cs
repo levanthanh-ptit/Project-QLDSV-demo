@@ -32,7 +32,9 @@ namespace Project_QLDSV.GiaoTac_Table
         }
         public void SP_Fill(int minSup)
         {
+            Console.Out.WriteLine("GiaoTacAdapter SP_Fill:::" + DateTime.Now.ToString());
             base.SP_Fill($"SP_GIAOTAC @minsup = {minSup}");
+            Console.Out.WriteLine("GiaoTacAdapter SP_Fill:::" + DateTime.Now.ToString());
         }
     }
 }

@@ -39,7 +39,7 @@ namespace Project_QLDSV
         {  
             dataRepository.ConnectServer();
             MonHocAdapter.Fill();
-            GiaoTacAdapter.SP_Fill(MinSupport);
+            //GiaoTacAdapter.SP_Fill(MinSupport);
         }
         [STAThread]
         static void Main()
