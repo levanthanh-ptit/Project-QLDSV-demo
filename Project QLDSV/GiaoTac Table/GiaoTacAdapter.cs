@@ -17,7 +17,7 @@ namespace Project_QLDSV.GiaoTac_Table
         public override GiaoTac NewRowFromReader(SqlDataReader reader)
         {
             GiaoTac giaoTac = new GiaoTac(reader.GetString(0));
-            for(int i = 1; i < reader.FieldCount; i++)
+            for (int i = 1; i < reader.FieldCount; i++)
             {
                 try
                 {
@@ -32,9 +32,13 @@ namespace Project_QLDSV.GiaoTac_Table
         }
         public void SP_Fill(int minSup)
         {
-            Console.Out.WriteLine("GiaoTacAdapter SP_Fill:::" + DateTime.Now.ToString());
+            // count running time
+            var watch = System.Diagnostics.Stopwatch.StartNew();
+            // start
             base.SP_Fill($"SP_GIAOTAC @minsup = {minSup}");
-            Console.Out.WriteLine("GiaoTacAdapter SP_Fill:::" + DateTime.Now.ToString());
+            // count running time
+            watch.Stop();
+            Console.Out.WriteLine("GiaoTacAdapter SP_Fill:::" + watch.ElapsedMilliseconds);
         }
     }
 }

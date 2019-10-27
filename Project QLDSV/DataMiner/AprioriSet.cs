@@ -13,7 +13,9 @@ namespace Project_QLDSV.DataMiner
         public event EventHandler<EventArgs> OnAprioriEnd;
         public AprioriSet(GiaoTac_Table.GiaoTacTable giaoTacs)
         {
-            Console.Out.WriteLine("AprioriSet constructor:::"+DateTime.Now.ToString());
+            // count running time
+            var watch = System.Diagnostics.Stopwatch.StartNew();
+            // start
             Add(new Apriori(1));
             for (int i = 0; i < giaoTacs.ColumnCount; i++)
             {
@@ -36,7 +38,9 @@ namespace Project_QLDSV.DataMiner
                 if (isZero) continue;
                 this[0].F_List.Add(f_Item);
             }
-            Console.Out.WriteLine("AprioriSet constructor:::" + DateTime.Now.ToString());
+            // count running time
+            watch.Stop();
+            Console.Out.WriteLine("AprioriSet Constructor:::" + watch.ElapsedMilliseconds);
         }
         public int GetIndex(int K)
         {
@@ -80,13 +84,18 @@ namespace Project_QLDSV.DataMiner
 
         public void NextStep()
         {
-            Console.Out.WriteLine("AprioriSet NextStep:::" + DateTime.Now.ToString());
+            // count running time
+            var watch = System.Diagnostics.Stopwatch.StartNew();
+            // start
             Apriori apriori = GetItem(Count);
             List<ItemSet> c_List = AprioriGen(Count);
             if (c_List.Count == 0)
             {
                 OnAprioriEnd.Invoke(this, new EventArgs());
                 EndFlag = true;
+                // count running time
+                watch.Stop();
+                Console.Out.WriteLine("AprioriSet NextStep:::{0}:::{1}", Count, watch.ElapsedMilliseconds);
                 return;
             }
             Apriori aprioriNext = new Apriori(Count + 1);
@@ -94,7 +103,7 @@ namespace Project_QLDSV.DataMiner
             {
                 foreach (F_Item f_item in apriori.F_List) // O(n^3)
                 {
-                    if (ContainsList(f_item, c_List[i], c_List[i].Count -1) && ContainsList(f_item, c_List[i], c_List[i].Count - 2)) //O(n^2)
+                    if (ContainsList(f_item, c_List[i], c_List[i].Count - 1) && ContainsList(f_item, c_List[i], c_List[i].Count - 2)) //O(n^2)
                     {
                         c_List[i].Support++;
                         bool notExistTID = true;
@@ -129,7 +138,9 @@ namespace Project_QLDSV.DataMiner
                 }
             }
             Add(aprioriNext);
-            Console.Out.WriteLine("AprioriSet NextStep:::" + DateTime.Now.ToString());
+            // count running time
+            watch.Stop();
+            Console.Out.WriteLine("AprioriSet NextStep:::{0}:::{1}", Count, watch.ElapsedMilliseconds);
         }
         public bool ContainsList(List<List<int>> listParent, List<int> listChild)
         {
@@ -150,7 +161,7 @@ namespace Project_QLDSV.DataMiner
                 bool isEqual = true;
                 int i = 0;
                 int j = 0;
-                while(i < itemParent.Count)
+                while (i < itemParent.Count)
                 {
                     if (j == ignoreIndex) j++;
                     if (itemParent[i] != c_list[j])
