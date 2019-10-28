@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Project_QLDSV.DataMiner
 {
-    public class Apriori
+    class Apriori
     {
         public List<F_Item> F_List = new List<F_Item>();
         public List<ItemSet> C_List = new List<ItemSet>();

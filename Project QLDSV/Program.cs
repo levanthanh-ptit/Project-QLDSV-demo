@@ -7,7 +7,6 @@ using System.Windows.Forms;
 using SQLData;
 using Project_QLDSV.Mon_Hoc;
 using Project_QLDSV.GiaoTac_Table;
-using Project_QLDSV.DataMiner;
 
 namespace Project_QLDSV
 {
@@ -19,11 +18,10 @@ namespace Project_QLDSV
         public static MonHocAdapter MonHocAdapter;
         public static GiaoTacTable GiaoTacTable;
         public static GiaoTacAdapter GiaoTacAdapter;
-        public static FormMain FormMain;
-        public static AprioriSet AprioriSet;
+        public static FormMain Form1;
         public static void SetupServices()
         {
-            dataRepository.Server = "DESKTOP-1VI1ATV";
+            dataRepository.Server = "DESKTOP-EBVE71U\\LOUISSQLSERVER";
             dataRepository.DataBase = "QLDSV";
             dataRepository.LoginName = "sa";
             dataRepository.Password = "123";
@@ -32,7 +30,7 @@ namespace Project_QLDSV
             MonHocAdapter = new MonHocAdapter(MonHocTable, dataRepository.sqlConnection);
             GiaoTacTable = new GiaoTacTable();
             GiaoTacAdapter = new GiaoTacAdapter(GiaoTacTable, dataRepository.sqlConnection);
-            FormMain = new FormMain(MonHocTable, MonHocAdapter, GiaoTacTable, GiaoTacAdapter, AprioriSet);
+            Form1 = new FormMain(MonHocTable, MonHocAdapter, GiaoTacTable, GiaoTacAdapter);
         }
         public static void StartServices()
         {  
@@ -47,7 +45,7 @@ namespace Project_QLDSV
             Application.SetCompatibleTextRenderingDefault(false);
             SetupServices();
             StartServices();
-            Application.Run(FormMain);
+            Application.Run(Form1);
         }
     }
 }
