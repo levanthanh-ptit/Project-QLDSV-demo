@@ -23,13 +23,12 @@ namespace Project_QLDSV
         private GiaoTacTable GiaoTacTable;
         private GiaoTacAdapter GiaoTacAdapter;
         private AprioriSet AprioriSet;
-        public FormMain(MonHocTable MonHocTable, MonHocAdapter MonHocAdapter, GiaoTacTable GiaoTacTable, GiaoTacAdapter GiaoTacAdapter, AprioriSet AprioriSet)
+        public FormMain(MonHocTable MonHocTable, MonHocAdapter MonHocAdapter, GiaoTacTable GiaoTacTable, GiaoTacAdapter GiaoTacAdapter)
         {
             this.MonHocTable = MonHocTable;
             this.MonHocAdapter = MonHocAdapter;
             this.GiaoTacTable = GiaoTacTable;
             this.GiaoTacAdapter = GiaoTacAdapter;
-            this.AprioriSet = AprioriSet;
             InitializeComponent();
             minSupCache = trackBarMinSup.Value;
             AddEventHandler();
