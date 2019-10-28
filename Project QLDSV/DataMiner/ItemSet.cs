@@ -2,13 +2,13 @@
 
 namespace Project_QLDSV.DataMiner
 {
-    public class ItemSet : List<int>
+    public class ItemSet : List<ushort>
     {
         public int Support { get; set; } = 0;
         public ItemSet()
         {
         }
-        public ItemSet(IEnumerable<int> collection) : base(collection)
+        public ItemSet(IEnumerable<ushort> collection) : base(collection)
         {
         }
         public ItemSet(int capacity) : base(capacity)
@@ -17,11 +17,11 @@ namespace Project_QLDSV.DataMiner
         public override string ToString()
         {
             string itemsString = "{";
-            foreach (int e in this)
+            foreach (ushort e in this)
             {
                 itemsString += e + ", ";
             }
-            itemsString = itemsString.Trim(new System.Char[] { ',', ' ' });
+            itemsString = itemsString.Trim(new char[] { ',', ' ' });
             return itemsString + "}";
         }
     }

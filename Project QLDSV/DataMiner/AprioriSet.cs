@@ -17,9 +17,9 @@ namespace Project_QLDSV.DataMiner
             var watch = System.Diagnostics.Stopwatch.StartNew();
             // start
             Add(new Apriori(1));
-            for (int i = 0; i < giaoTacs.ColumnCount; i++)
+            for (ushort i = 0; i < giaoTacs.ColumnCount; i++)
             {
-                this[0].L_List.Add(new ItemSet() { i + 1 });
+                this[0].L_List.Add(new ItemSet() { (ushort)(i + 1) });
             }
             for (int i = 0; i < giaoTacs.Count; i++)
             {
@@ -31,7 +31,7 @@ namespace Project_QLDSV.DataMiner
                     if (giaoTacs[i][j] == 1)
                     {
                         isZero = false;
-                        f_Item.Add(new List<int>() { j + 1 });
+                        f_Item.Add(new List<ushort>() { (ushort)(j + 1) });
                         this[0].L_List[j].Support++;
                     }
                 }
@@ -142,9 +142,9 @@ namespace Project_QLDSV.DataMiner
             watch.Stop();
             Console.Out.WriteLine("AprioriSet NextStep:::{0}:::{1}", Count, watch.ElapsedMilliseconds);
         }
-        public bool ContainsList(List<List<int>> listParent, List<int> listChild)
+        public bool ContainsList(List<List<ushort>> listParent, List<ushort> listChild)
         {
-            foreach (List<int> itemParent in listParent)
+            foreach (List<ushort> itemParent in listParent)
             {
                 if (itemParent.SequenceEqual(listChild))
                 {
@@ -153,9 +153,9 @@ namespace Project_QLDSV.DataMiner
             }
             return false;
         }
-        public bool ContainsList(List<List<int>> f_list, List<int> c_list, int ignoreIndex)
+        public bool ContainsList(List<List<ushort>> f_list, List<ushort> c_list, int ignoreIndex)
         {
-            foreach (List<int> itemParent in f_list)
+            foreach (List<ushort> itemParent in f_list)
             {
                 if (itemParent.Count != c_list.Count - 1) continue;
                 bool isEqual = true;

@@ -21,7 +21,7 @@ namespace Project_QLDSV.GiaoTac_Table
             {
                 try
                 {
-                    giaoTac.Pass.Add(reader.GetInt32(i));
+                    giaoTac.Pass.Add((short)reader.GetInt32(i));
                 }
                 catch (System.Data.SqlTypes.SqlNullValueException)
                 {

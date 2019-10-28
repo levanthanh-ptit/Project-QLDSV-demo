@@ -6,24 +6,24 @@ using System.Threading.Tasks;
 
 namespace Project_QLDSV.DataMiner
 {
-    public class F_Item : List<List<int>>
+    public class F_Item : List<List<ushort>>
     {
         public string TID { get; set; }
 
         public override string ToString()
         {
             string itemsString = "";
-            foreach (List<int> list in this)
+            foreach (List<ushort> list in this)
             {
                 itemsString += "{";
-                foreach (int item in list)
+                foreach (ushort item in list)
                 {
                     itemsString += item + ", ";
                 }
-                itemsString = itemsString.Trim(new Char[] { ',', ' ' });
+                itemsString = itemsString.Trim(new char[] { ',', ' ' });
                 itemsString += "}, ";
             }
-            itemsString = itemsString.Trim(new Char[] { ',', ' ' });
+            itemsString = itemsString.Trim(new char[] { ',', ' ' });
             return itemsString +="\n";
         }
     }

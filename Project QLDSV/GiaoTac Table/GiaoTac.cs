@@ -12,9 +12,9 @@ namespace Project_QLDSV.GiaoTac_Table
         [Key]
         public string MaSV { get; set; }
         [Ignore]
-        public List<int> Pass { get; set; } = new List<int>();
+        public List<short> Pass { get; set; } = new List<short>();
         [Ignore]
-        public int this[int index]
+        public short this[int index]
         {
             get
             {
@@ -42,7 +42,7 @@ namespace Project_QLDSV.GiaoTac_Table
         {
             List<object> propsToReturn = new List<object>();
             propsToReturn.Add(MaSV);
-            foreach (int e in Pass)
+            foreach (short e in Pass)
                 if (e != -1) propsToReturn.Add(e);
                 else propsToReturn.Add(1);
             return propsToReturn.ToArray();

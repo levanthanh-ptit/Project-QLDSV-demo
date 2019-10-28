@@ -29,24 +29,24 @@ namespace Project_QLDSV.FuncGenerateLaw
                 }
                 
             }
-            if(ListLeft.Count != 0 && ListRight.Count != 0)
-            {
-                for (int j = 0; j < itemSets.Count; j++)
-                {
-                    if (ListLeft.SequenceEqual(itemSets.ElementAt(j)))
-                    {
+            //if(ListLeft.Count != 0 && ListRight.Count != 0)
+            //{
+            //    for (int j = 0; j < itemSets.Count; j++)
+            //    {
+            //        if (ListLeft.SequenceEqual(itemSets.ElementAt(j)))
+            //        {
                         
-                        float MinConfList = ((float)itemSet.Support / itemSets.ElementAt(j).Support) * 100;
-                        if (MinConfList >= minConf)
-                        {
-                            ArrayLeft = ArrayLeft.Trim(new Char[] { ',' });
-                            ArrayRight = ArrayRight.Trim(new Char[] { ',' });
-                            stringarr.Add(ArrayLeft + " ==>> " + ArrayRight);
-                            return;
-                        }
-                    }
-                }
-            }
+            //            float MinConfList = ((float)itemSet.Support / itemSets.ElementAt(j).Support) * 100;
+            //            if (MinConfList >= minConf)
+            //            {
+            //                ArrayLeft = ArrayLeft.Trim(new Char[] { ',' });
+            //                ArrayRight = ArrayRight.Trim(new Char[] { ',' });
+            //                stringarr.Add(ArrayLeft + " ==>> " + ArrayRight);
+            //                return;
+            //            }
+            //        }
+            //    }
+            //}
         }
         public void generateAllBinaryStrings(int n,
                             int[] arr, int i, ref List<string> stringarr, List<ItemSet> itemSets, ItemSet itemSet,
