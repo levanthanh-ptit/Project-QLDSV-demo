@@ -141,6 +141,7 @@ namespace Project_QLDSV.DataMiner
             // count running time
             watch.Stop();
             Console.Out.WriteLine("AprioriSet NextStep:::{0}:::{1}", Count, watch.ElapsedMilliseconds);
+            Program.file.WriteLine($"{Count}:{watch.ElapsedMilliseconds}");
         }
         public bool ContainsList(List<List<ushort>> listParent, List<ushort> listChild)
         {
