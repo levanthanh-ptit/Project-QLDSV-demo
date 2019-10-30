@@ -21,5 +21,15 @@ namespace Project_QLDSV.GiaoTac_Table
         {
 
         }
+
+        public List<object[]> EndcodeList()
+        {
+            List<object[]> list = new List<object[]>();
+            for (int i = 0; i < DynamicFeildLabels.Count; i++)
+            {
+                list.Add(new object[] { DynamicFeildLabels[i], i + 1 });
+            }
+            return list;
+        }
     }
 }

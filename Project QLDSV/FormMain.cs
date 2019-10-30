@@ -53,6 +53,13 @@ namespace Project_QLDSV
             dataGridViewGiaotac.Columns.Clear();
             dataGridViewGiaotac.Columns.Add(new DataGridViewTextBoxColumn() { Name = "MASVCol", HeaderText = "Mã SV" });
             DataGridViewColumn[] columns = new DataGridViewColumn[GiaoTacTable.DynamicFeildLabels.Count];
+
+            dataGridViewEncode.Rows.Clear();
+            foreach(object[] el in GiaoTacTable.EndcodeList())
+            {
+                dataGridViewEncode.Rows.Add(el);
+            }
+
             for (int i = 0; i < GiaoTacTable.DynamicFeildLabels.Count; i++)
             {
                 DataGridViewColumn column = new DataGridViewTextBoxColumn()
@@ -67,7 +74,7 @@ namespace Project_QLDSV
             {
                 dataGridViewGiaotac.Rows.Add(gt.GetFieldObjectArray());
             }
-          
+            
         }
         private void trackBarMinSup_Scroll(object sender, EventArgs e)
         {
