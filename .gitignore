@@ -339,3 +339,4 @@ ASALocalRun/
 # BeatPulse healthcheck temp database
 healthchecksdb
 /Project QLDSV/server.settings
+/Project QLDSV/server.Designer.cs

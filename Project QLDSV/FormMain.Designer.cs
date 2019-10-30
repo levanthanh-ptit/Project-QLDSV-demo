@@ -29,7 +29,12 @@
         private void InitializeComponent()
         {
             this.dataGridViewMonHoc = new System.Windows.Forms.DataGridView();
+            this.Key = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MAMHCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TENMHCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.btnGenItemset = new System.Windows.Forms.Button();
@@ -39,16 +44,18 @@
             this.dataGridViewGiaotac = new System.Windows.Forms.DataGridView();
             this.MASVCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.Key = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MAMHCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TENMHCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.label5 = new System.Windows.Forms.Label();
+            this.dataGridViewEncode = new System.Windows.Forms.DataGridView();
+            this.colMaMH = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colEncode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMonHoc)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarMinSup)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewGiaotac)).BeginInit();
+            this.tableLayoutPanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEncode)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridViewMonHoc
@@ -68,6 +75,30 @@
             this.dataGridViewMonHoc.Size = new System.Drawing.Size(337, 235);
             this.dataGridViewMonHoc.TabIndex = 0;
             // 
+            // Key
+            // 
+            this.Key.HeaderText = "keyMH";
+            this.Key.MinimumWidth = 6;
+            this.Key.Name = "Key";
+            this.Key.ReadOnly = true;
+            this.Key.Width = 55;
+            // 
+            // MAMHCol
+            // 
+            this.MAMHCol.HeaderText = "Mã môn học";
+            this.MAMHCol.MinimumWidth = 6;
+            this.MAMHCol.Name = "MAMHCol";
+            this.MAMHCol.ReadOnly = true;
+            this.MAMHCol.Width = 125;
+            // 
+            // TENMHCol
+            // 
+            this.TENMHCol.HeaderText = "Tên môn học";
+            this.TENMHCol.MinimumWidth = 6;
+            this.TENMHCol.Name = "TENMHCol";
+            this.TENMHCol.ReadOnly = true;
+            this.TENMHCol.Width = 220;
+            // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -82,6 +113,7 @@
             this.tableLayoutPanel1.Controls.Add(this.label3, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.panel1, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.dataGridViewGiaotac, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 2);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 76);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 3;
@@ -90,6 +122,29 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(981, 427);
             this.tableLayoutPanel1.TabIndex = 1;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(345, 0);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(201, 18);
+            this.label4.TabIndex = 4;
+            this.label4.Text = "BẢNG GIAO TÁC (TẬP D)";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(2, 0);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(190, 18);
+            this.label3.TabIndex = 3;
+            this.label3.Text = "DANH SÁCH MÔN HỌC";
             // 
             // panel1
             // 
@@ -121,7 +176,7 @@
             this.btnGenItemset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnGenItemset.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGenItemset.Location = new System.Drawing.Point(298, 97);
-            this.btnGenItemset.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnGenItemset.Margin = new System.Windows.Forms.Padding(2);
             this.btnGenItemset.Name = "btnGenItemset";
             this.btnGenItemset.Size = new System.Drawing.Size(126, 38);
             this.btnGenItemset.TabIndex = 5;
@@ -199,52 +254,54 @@
             this.label1.Text = "ĐỀ TÀI TÌM LUẬT MÔN HỌC";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label3
+            // tableLayoutPanel2
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(2, 0);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(190, 18);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "DANH SÁCH MÔN HỌC";
+            this.tableLayoutPanel2.ColumnCount = 1;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.Controls.Add(this.label5, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.dataGridViewEncode, 0, 1);
+            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 269);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 2;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(337, 155);
+            this.tableLayoutPanel2.TabIndex = 5;
             // 
-            // label4
+            // label5
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(345, 0);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(201, 18);
-            this.label4.TabIndex = 4;
-            this.label4.Text = "BẢNG GIAO TÁC (TẬP D)";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(2, 0);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(64, 18);
+            this.label5.TabIndex = 4;
+            this.label5.Text = "Mã hóa";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // Key
+            // dataGridViewEncode
             // 
-            this.Key.HeaderText = "keyMH";
-            this.Key.MinimumWidth = 6;
-            this.Key.Name = "Key";
-            this.Key.ReadOnly = true;
-            this.Key.Width = 55;
+            this.dataGridViewEncode.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewEncode.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.colMaMH,
+            this.colEncode});
+            this.dataGridViewEncode.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridViewEncode.Location = new System.Drawing.Point(3, 28);
+            this.dataGridViewEncode.Name = "dataGridViewEncode";
+            this.dataGridViewEncode.Size = new System.Drawing.Size(331, 124);
+            this.dataGridViewEncode.TabIndex = 5;
             // 
-            // MAMHCol
+            // colMaMH
             // 
-            this.MAMHCol.HeaderText = "Mã môn học";
-            this.MAMHCol.MinimumWidth = 6;
-            this.MAMHCol.Name = "MAMHCol";
-            this.MAMHCol.ReadOnly = true;
-            this.MAMHCol.Width = 125;
+            this.colMaMH.HeaderText = "Mã Môn học";
+            this.colMaMH.Name = "colMaMH";
             // 
-            // TENMHCol
+            // colEncode
             // 
-            this.TENMHCol.HeaderText = "Tên môn học";
-            this.TENMHCol.MinimumWidth = 6;
-            this.TENMHCol.Name = "TENMHCol";
-            this.TENMHCol.ReadOnly = true;
-            this.TENMHCol.Width = 220;
+            this.colEncode.HeaderText = "Mã hóa";
+            this.colEncode.Name = "colEncode";
             // 
             // FormMain
             // 
@@ -263,6 +320,9 @@
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarMinSup)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewGiaotac)).EndInit();
+            this.tableLayoutPanel2.ResumeLayout(false);
+            this.tableLayoutPanel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEncode)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -286,5 +346,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Key;
         private System.Windows.Forms.DataGridViewTextBoxColumn MAMHCol;
         private System.Windows.Forms.DataGridViewTextBoxColumn TENMHCol;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.DataGridView dataGridViewEncode;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colMaMH;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colEncode;
     }
 }

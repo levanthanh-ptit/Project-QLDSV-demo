@@ -13,7 +13,7 @@ namespace Project_QLDSV
 {
     static class Program
     {
-        public static System.IO.StreamWriter file = new System.IO.StreamWriter(server.Default.LogFile);
+        public static System.IO.StreamWriter file = new System.IO.StreamWriter(server.Default.LogFile, true);
         public static DataRepository dataRepository = new DataRepository();
         //Student table
         public static MonHocTable MonHocTable;
