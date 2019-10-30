@@ -36,6 +36,9 @@
   </PropertyGroup>
   <PropertyGroup />
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -80,11 +83,6 @@
     <Compile Include="MonHoc Table\MonHoc.cs" />
     <Compile Include="MonHoc Table\MonHocAdapter.cs" />
     <Compile Include="MonHoc Table\MonHocTable.cs" />
-    <Compile Include="server.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-      <DependentUpon>server.settings</DependentUpon>
-    </Compile>
     <Compile Include="SQLData\QueryBatch\QueryBatch.cs" />
     <Compile Include="SQLData\QueryBatch\QueryColumn.cs" />
     <Compile Include="SQLData\QueryBatch\QueryStament.cs" />
@@ -120,6 +118,8 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="appsettings.json" />
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -130,14 +130,9 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <None Include="README.md" />
-    <None Include="server.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>server.Designer.cs</LastGenOutput>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

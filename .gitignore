@@ -340,3 +340,5 @@ ASALocalRun/
 healthchecksdb
 /Project QLDSV/server.settings
 /Project QLDSV/server.Designer.cs
+/Project QLDSV/appsettings.json
+/Project QLDSV/packages.config

@@ -8,12 +8,15 @@ using SQLData;
 using Project_QLDSV.Mon_Hoc;
 using Project_QLDSV.GiaoTac_Table;
 using Project_QLDSV.DataMiner;
+using System.Xml;
+using Newtonsoft.Json.Linq;
+using System.IO;
 
 namespace Project_QLDSV
 {
     static class Program
     {
-        public static System.IO.StreamWriter file = new System.IO.StreamWriter(server.Default.LogFile, true);
+        public static System.IO.StreamWriter file;
         public static DataRepository dataRepository = new DataRepository();
         //Student table
         public static MonHocTable MonHocTable;
@@ -25,8 +28,11 @@ namespace Project_QLDSV
         public static int MinSupport = 25;
         public static void SetupServices()
         {
-            dataRepository.Server = server.Default.ServerName;
-            dataRepository.DataBase = server.Default.Database;
+
+            dynamic server = JObject.Parse(File.ReadAllText("../../appsettings.json"));
+            file = new System.IO.StreamWriter((string)server.logfile, true);
+            dataRepository.Server = server.server;
+            dataRepository.DataBase = server.database;
             dataRepository.LoginName = "sa";
             dataRepository.Password = "123";
             dataRepository.NewSqlConnection();
@@ -47,9 +53,9 @@ namespace Project_QLDSV
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            file.WriteLine("int:::");
             SetupServices();
             StartServices();
+            file.WriteLine("int:::");
             Application.Run(FormMain);
             file.Close();
         }
