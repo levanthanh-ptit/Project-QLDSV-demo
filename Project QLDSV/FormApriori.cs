@@ -39,7 +39,8 @@ namespace Project_QLDSV
 
         private void AprioriSet_OnAprioriEnd(object sender, EventArgs e)
         {
-            FormGenLaw formGenLaw = new FormGenLaw(AprioriSet);
+            Program.AprioriSet = AprioriSet;
+            FormGenLaw formGenLaw = new FormGenLaw();
             formGenLaw.Show();
         }
 

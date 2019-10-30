@@ -15,10 +15,8 @@ namespace Project_QLDSV
     public partial class FormGenLaw : Form
     {
         private int minConf = 0;
-        private AprioriSet AprioriSet;
-        public FormGenLaw(AprioriSet AprioriSet)
+        public FormGenLaw()
         {
-            this.AprioriSet = AprioriSet;
             InitializeComponent();
         }
 
@@ -47,7 +45,7 @@ namespace Project_QLDSV
             GenLaw generateLaw = new GenLaw();
             //GenerateLaw generateLaw = new GenerateLaw();
             List<string> myCollection = new List<string>();
-            List<ItemSet> listL = getListL(this.AprioriSet);
+            List<ItemSet> listL = getListL(Program.AprioriSet);
             for (int i = 0; i < listL.Count; i++)
             {
                 if (listL.ElementAt(i).Count > 1)
