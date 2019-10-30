@@ -19,14 +19,12 @@ namespace Project_QLDSV.FuncGenerateLaw
             {
                 if(arr[i]== 1)
                 {
-                    //ArrayLeft += Program.MonHocTable[itemSet[i]-1].TenMH + ",";
-                    ArrayLeft += itemSet[i];
+                    ArrayLeft += Program.GiaoTacTable.DynamicFeildLabels[itemSet[i]-1] + ",";
                     ListLeft.Add(itemSet[i]);
                 }
                 else
                 {
-                    //ArrayRight += Program.MonHocTable[itemSet[i]-1].TenMH + ",";
-                    ArrayRight += itemSet[i];
+                    ArrayRight += Program.GiaoTacTable.DynamicFeildLabels[itemSet[i] - 1] + ",";
                     ListRight.Add(itemSet[i]);
                 }
                 
