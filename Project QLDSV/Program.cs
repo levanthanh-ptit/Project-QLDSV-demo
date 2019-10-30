@@ -13,6 +13,7 @@ namespace Project_QLDSV
 {
     static class Program
     {
+        public static System.IO.StreamWriter file = new System.IO.StreamWriter(server.Default.LogFile);
         public static DataRepository dataRepository = new DataRepository();
         //Student table
         public static MonHocTable MonHocTable;
@@ -46,9 +47,11 @@ namespace Project_QLDSV
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            file.WriteLine("int:::");
             SetupServices();
             StartServices();
             Application.Run(FormMain);
+            file.Close();
         }
     }
 }

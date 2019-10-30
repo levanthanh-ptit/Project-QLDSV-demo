@@ -34,5 +34,17 @@ namespace Project_QLDSV {
                 this["ServerName"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Users\\thanh-pc\\Desktop\\runlogs.txt")]
+        public string LogFile {
+            get {
+                return ((string)(this["LogFile"]));
+            }
+            set {
+                this["LogFile"] = value;
+            }
+        }
     }
 }

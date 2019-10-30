@@ -39,6 +39,7 @@ namespace Project_QLDSV.GiaoTac_Table
             // count running time
             watch.Stop();
             Console.Out.WriteLine("GiaoTacAdapter SP_Fill:::" + watch.ElapsedMilliseconds);
+            Program.file.WriteLine($"1:{watch.ElapsedMilliseconds}");
         }
     }
 }
