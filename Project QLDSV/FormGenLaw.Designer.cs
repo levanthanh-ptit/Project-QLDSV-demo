@@ -134,14 +134,17 @@
             // 
             // dataGridLaw
             // 
+            this.dataGridLaw.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridLaw.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridLaw.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.MH});
-            this.dataGridLaw.Location = new System.Drawing.Point(12, 207);
+            this.dataGridLaw.Location = new System.Drawing.Point(0, 207);
             this.dataGridLaw.Name = "dataGridLaw";
             this.dataGridLaw.RowHeadersWidth = 51;
             this.dataGridLaw.RowTemplate.Height = 24;
-            this.dataGridLaw.Size = new System.Drawing.Size(960, 346);
+            this.dataGridLaw.Size = new System.Drawing.Size(983, 359);
             this.dataGridLaw.TabIndex = 0;
             // 
             // MH

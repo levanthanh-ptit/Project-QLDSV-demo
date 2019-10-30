@@ -39,7 +39,8 @@ namespace Project_QLDSV
 
         private void AprioriSet_OnAprioriEnd(object sender, EventArgs e)
         {
-            // do something
+            FormGenLaw formGenLaw = new FormGenLaw(AprioriSet);
+            formGenLaw.Show();
         }
 
         public void Refill()

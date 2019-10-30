@@ -65,6 +65,7 @@
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="FuncGenerateLaw\GenerateLaw.cs" />
     <Compile Include="FuncGenerateLaw\GenLaw.cs" />
     <Compile Include="FuncGenerateLaw\ReadCollectionLFromFile.cs" />
     <Compile Include="FormGenLaw.cs">

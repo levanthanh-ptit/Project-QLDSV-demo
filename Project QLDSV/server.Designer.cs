@@ -12,7 +12,7 @@ namespace Project_QLDSV {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.3.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.2.0.0")]
     internal sealed partial class server : global::System.Configuration.ApplicationSettingsBase {
         
         private static server defaultInstance = ((server)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new server())));
@@ -25,7 +25,7 @@ namespace Project_QLDSV {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("DESKTOP-1VI1ATV")]
+        [global::System.Configuration.DefaultSettingValueAttribute("DESKTOP-EBVE71U\\LOUISSQLSERVER")]
         public string ServerName {
             get {
                 return ((string)(this["ServerName"]));

@@ -19,12 +19,14 @@ namespace Project_QLDSV.FuncGenerateLaw
             {
                 if(arr[i]== 1)
                 {
-                    ArrayLeft += Program.MonHocTable[itemSet[i]].TenMH + ",";
+                    //ArrayLeft += Program.MonHocTable[itemSet[i]-1].TenMH + ",";
+                    ArrayLeft += itemSet[i];
                     ListLeft.Add(itemSet[i]);
                 }
                 else
                 {
-                    ArrayRight += Program.MonHocTable[itemSet[i]].TenMH + ",";
+                    //ArrayRight += Program.MonHocTable[itemSet[i]-1].TenMH + ",";
+                    ArrayRight += itemSet[i];
                     ListRight.Add(itemSet[i]);
                 }
                 
@@ -35,7 +37,6 @@ namespace Project_QLDSV.FuncGenerateLaw
                 {
                     if (ListLeft.SequenceEqual(itemSets.ElementAt(j)))
                     {
-                        
                         float MinConfList = ((float)itemSet.Support / itemSets.ElementAt(j).Support) * 100;
                         if (MinConfList >= minConf)
                         {
@@ -66,7 +67,6 @@ namespace Project_QLDSV.FuncGenerateLaw
             arr[i] = 1;
             generateAllBinaryStrings(n, arr, i + 1, ref stringarr, itemSets, itemSet, minConf);
         }
-       
     }
     
 }

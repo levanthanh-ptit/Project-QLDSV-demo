@@ -25,7 +25,7 @@ namespace Project_QLDSV
         public static void SetupServices()
         {
             dataRepository.Server = server.Default.ServerName;
-            dataRepository.DataBase = "QLDSV";
+            dataRepository.DataBase = "DSV";
             dataRepository.LoginName = "sa";
             dataRepository.Password = "123";
             dataRepository.NewSqlConnection();

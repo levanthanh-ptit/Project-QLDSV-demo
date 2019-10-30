@@ -40,7 +40,13 @@ namespace Project_QLDSV
 
         private void BtnSINHLUAT_Click(object sender, EventArgs e)
         {
-            GenLaw generateLaw = new GenLaw();
+            // count running time
+            var watch = System.Diagnostics.Stopwatch.StartNew();
+            // start
+            dataGridLaw.Rows.Clear();
+             GenLaw generateLaw = new GenLaw();
+            //GenerateLaw generateLaw = new GenerateLaw();
+            List<string> myCollection = new List<string>();
             List<ItemSet> listL = getListL(this.AprioriSet);
             for (int i = 0; i < listL.Count; i++)
             {
@@ -48,15 +54,17 @@ namespace Project_QLDSV
                 {
                     int n = listL.ElementAt(i).Count;
                     int[] arr = new int[n];
-                    dataGridLaw.Rows.Clear();
-                    List<string> myCollection = new List<string>();
                     generateLaw.generateAllBinaryStrings(n, arr, 0, ref myCollection, listL, listL.ElementAt(i), minConf);
-                    foreach(string l in myCollection)
-                    {
-                        dataGridLaw.Rows.Add(l);
-                    }
+                    //generateLaw.generateAllBinaryStrings(ref myCollection, listL, listL.ElementAt(i),minConf);
                 }
             }
+            foreach (string l in myCollection)
+            {
+                dataGridLaw.Rows.Add(l);
+            }
+            // count running time
+            watch.Stop();
+            Console.Out.WriteLine("Generate Law:::" + watch.ElapsedMilliseconds);
         }
 
    

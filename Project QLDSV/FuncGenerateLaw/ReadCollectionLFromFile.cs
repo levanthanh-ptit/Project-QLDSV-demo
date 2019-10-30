@@ -8,5 +8,6 @@ namespace Project_QLDSV.FuncGenerateLaw
 {
     class ReadCollectionLFromFile
     {
+
     }
 }
