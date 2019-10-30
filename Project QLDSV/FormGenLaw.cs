@@ -44,7 +44,7 @@ namespace Project_QLDSV
             var watch = System.Diagnostics.Stopwatch.StartNew();
             // start
             dataGridLaw.Rows.Clear();
-             GenLaw generateLaw = new GenLaw();
+            GenLaw generateLaw = new GenLaw();
             //GenerateLaw generateLaw = new GenerateLaw();
             List<string> myCollection = new List<string>();
             List<ItemSet> listL = getListL(this.AprioriSet);
