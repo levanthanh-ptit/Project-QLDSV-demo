@@ -20,20 +20,28 @@ namespace Project_QLDSV.FuncGenerateLaw
             for (int i = 0; i < n; i++)
             {
                 
-                foreach(MonHoc mh in Program.MonHocTable)
-                {
-                    if(mh.MaMH.Equals(Program.GiaoTacTable.DynamicFeildLabels[itemSet[i] - 1]))
-                    {
-
-                    }
-                }
+            
                 if(arr[i]== 1)
                 {
+                    foreach (MonHoc mh in Program.MonHocTable)
+                    {
+                        if (mh.MaMH.Equals(Program.GiaoTacTable.DynamicFeildLabels[itemSet[i] - 1]))
+                        {
+
+                        }
+                    }
                     ArrayLeft += Program.GiaoTacTable.DynamicFeildLabels[itemSet[i]-1] + ", ";
                     ListLeft.Add(itemSet[i]);
                 }
                 else
                 {
+                    foreach (MonHoc mh in Program.MonHocTable)
+                    {
+                        if (mh.MaMH.Equals(Program.GiaoTacTable.DynamicFeildLabels[itemSet[i] - 1]))
+                        {
+
+                        }
+                    }
                     ArrayRight += Program.GiaoTacTable.DynamicFeildLabels[itemSet[i] - 1] + ", ";
                     ListRight.Add(itemSet[i]);
                 }
