@@ -28,7 +28,6 @@ namespace Project_QLDSV
         public static int MinSupport = 25;
         public static void SetupServices()
         {
-
             dynamic server = JObject.Parse(File.ReadAllText("../../appsettings.json"));
             file = new System.IO.StreamWriter((string)server.logfile, true);
             dataRepository.Server = server.server;
