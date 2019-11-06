@@ -46,12 +46,13 @@ namespace Project_QLDSV
 
         public void Refill()
         {
-            this.CollectionF_Filled();
+           // this.CollectionF_Filled();
             this.CollectionL_Filled();
         }
         private void CollectionF_Filled()
         {
             dataGridViewListF.Rows.Clear();
+            this.txtTapF.Text = AprioriSet[K - 1].F_List.Count.ToString();
             foreach (F_Item f_item in AprioriSet[K - 1].F_List)
             {
                 dataGridViewListF.Rows.Add(f_item.TID, f_item.ToString());
@@ -60,6 +61,7 @@ namespace Project_QLDSV
         private void CollectionL_Filled()
         {
             dataGridViewListL.Rows.Clear();
+            this.txtTapL.Text = AprioriSet[K - 1].L_List.Count.ToString();
             foreach (ItemSet itemSet in AprioriSet[K - 1].L_List)
             {
                 dataGridViewListL.Rows.Add(itemSet.ToString(), itemSet.Support);

@@ -159,7 +159,6 @@
             // 
             // Min
             // 
-            this.Min.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Min.FillWeight = 106.9519F;
             this.Min.HeaderText = "MinConf";
             this.Min.MinimumWidth = 6;

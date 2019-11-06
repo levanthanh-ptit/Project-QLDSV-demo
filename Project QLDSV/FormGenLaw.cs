@@ -54,12 +54,16 @@ namespace Project_QLDSV
                     int n = listL.ElementAt(i).Count;
                     int[] arr = new int[n];
                     generateLaw.generateAllBinaryStrings(n, arr, 0, ref myCollection, listL, listL.ElementAt(i), minConf);
-                   // generateLaw.generateAllBinaryStrings(ref myCollection, listL, listL.ElementAt(i),minConf);
+                   //generateLaw.generateAllBinaryStrings(ref myCollection, listL, listL.ElementAt(i),minConf);
                 }
+            }
+            if (myCollection.Count == 0)
+            {
+                MessageBox.Show("Kết quả tìm luật rỗng !");
             }
             foreach (DataLaw l in myCollection)
             {
-                dataGridLaw.Rows.Add(l.Law,l.minConf+" %");
+                dataGridLaw.Rows.Add(l.Law, string.Format("{0:n2} %", l.minConf));
             }
             // count running time
             watch.Stop();

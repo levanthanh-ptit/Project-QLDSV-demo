@@ -99,31 +99,48 @@ namespace Project_QLDSV.DataMiner
                 return;
             }
             Apriori aprioriNext = new Apriori(Count + 1);
-            for (int i = 0; i < c_List.Count; i++) //O(n)
+            //for (int i = 0; i < c_List.Count; i++) //O(n)
+            //{
+            //    foreach (F_Item f_item in apriori.F_List) // O(n^3)
+            //    {
+            //        if (ContainsList(f_item, c_List[i], c_List[i].Count - 1) && ContainsList(f_item, c_List[i], c_List[i].Count - 2)) //O(n^2)
+            //        {
+            //            c_List[i].Support++;
+            //            bool notExistTID = true;
+            //            for (int j = 0; j < aprioriNext.F_List.Count; j++) //O(n)
+            //            {
+            //                if (aprioriNext.F_List[j].TID == f_item.TID)
+            //                {
+            //                    aprioriNext.F_List[j].Add(c_List[i]);
+            //                    notExistTID = false;
+            //                    break;
+            //                }
+            //            }
+            //            if (notExistTID)
+            //            {
+            //                F_Item f = new F_Item();
+            //                f.TID = f_item.TID;
+            //                f.Add(c_List[i]);
+            //                aprioriNext.F_List.Add(f);
+            //            }
+            //        }
+            //    }
+            //}
+           for(int i = 0; i < apriori.F_List.Count; i++)
             {
-                foreach (F_Item f_item in apriori.F_List) // O(n^3)
+                F_Item f = new F_Item();
+                f.TID = apriori.F_List[i].TID;
+                foreach (ItemSet clist in c_List)
                 {
-                    if (ContainsList(f_item, c_List[i], c_List[i].Count - 1) && ContainsList(f_item, c_List[i], c_List[i].Count - 2)) //O(n^2)
+                    if (ContainsList(apriori.F_List[i], clist, clist.Count - 1) && ContainsList(apriori.F_List[i], clist, clist.Count - 2)) //O(n^2)
                     {
-                        c_List[i].Support++;
-                        bool notExistTID = true;
-                        for (int j = 0; j < aprioriNext.F_List.Count; j++) //O(n)
-                        {
-                            if (aprioriNext.F_List[j].TID == f_item.TID)
-                            {
-                                aprioriNext.F_List[j].Add(c_List[i]);
-                                notExistTID = false;
-                                break;
-                            }
-                        }
-                        if (notExistTID)
-                        {
-                            F_Item f = new F_Item();
-                            f.TID = f_item.TID;
-                            f.Add(c_List[i]);
-                            aprioriNext.F_List.Add(f);
-                        }
+                        clist.Support++;
+                        f.Add(clist);
                     }
+                }
+                if(f.Count != 0)
+                {
+                    aprioriNext.F_List.Add(f);
                 }
             }
             float minSup = ((float)Program.MinSupport / 100) * aprioriNext.F_List.Count;
@@ -143,17 +160,17 @@ namespace Project_QLDSV.DataMiner
             Console.Out.WriteLine("AprioriSet NextStep:::{0}:::{1}", Count, watch.ElapsedMilliseconds);
             Program.file.WriteLine($"{Count}:{watch.ElapsedMilliseconds}");
         }
-        public bool ContainsList(List<List<int>> listParent, List<int> listChild)
-        {
-            foreach (List<int> itemParent in listParent)
-            {
-                if (itemParent.SequenceEqual(listChild))
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
+        //public bool ContainsList(List<List<int>> listParent, List<int> listChild)
+        //{
+        //    foreach (List<int> itemParent in listParent)
+        //    {
+        //        if (itemParent.SequenceEqual(listChild))
+        //        {
+        //            return true;
+        //        }
+        //    }
+        //    return false;
+        //}
         public bool ContainsList(List<List<int>> f_list, List<int> c_list, int ignoreIndex)
         {
             foreach (List<int> itemParent in f_list)
