@@ -46,7 +46,7 @@ namespace Project_QLDSV
 
         public void Refill()
         {
-           // this.CollectionF_Filled();
+            this.CollectionF_Filled();
             this.CollectionL_Filled();
         }
         private void CollectionF_Filled()
