@@ -59,14 +59,14 @@ namespace SQLData.Table
             }
             return -1;
         }
-        public new void Add(T newItem)
-        {
-            if (FindIndex(newItem) == -1)
-            {
-                base.Add(newItem);
-            }
-            else throw new PrimaryKeyException(PrimaryKeyException.DUPLICATED);
-        }
+        //public new void Add(T newItem)
+        //{
+        //    if (FindIndex(newItem) == -1)
+        //    {
+        //        base.Add(newItem);
+        //    }
+        //    else throw new PrimaryKeyException(PrimaryKeyException.DUPLICATED);
+        //}
         public void UpdateRow(T item)
         {
             this[item.Index] = item;
