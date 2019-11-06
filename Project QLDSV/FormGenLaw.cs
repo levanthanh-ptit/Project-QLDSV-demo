@@ -44,7 +44,8 @@ namespace Project_QLDSV
             dataGridLaw.Rows.Clear();
             GenLaw generateLaw = new GenLaw();
             //GenerateLaw generateLaw = new GenerateLaw();
-            List<string> myCollection = new List<string>();
+            
+            List<DataLaw> myCollection = new List<DataLaw>();
             List<ItemSet> listL = getListL(Program.AprioriSet);
             for (int i = 0; i < listL.Count; i++)
             {
@@ -53,12 +54,12 @@ namespace Project_QLDSV
                     int n = listL.ElementAt(i).Count;
                     int[] arr = new int[n];
                     generateLaw.generateAllBinaryStrings(n, arr, 0, ref myCollection, listL, listL.ElementAt(i), minConf);
-                    //generateLaw.generateAllBinaryStrings(ref myCollection, listL, listL.ElementAt(i),minConf);
+                   // generateLaw.generateAllBinaryStrings(ref myCollection, listL, listL.ElementAt(i),minConf);
                 }
             }
-            foreach (string l in myCollection)
+            foreach (DataLaw l in myCollection)
             {
-                dataGridLaw.Rows.Add(l);
+                dataGridLaw.Rows.Add(l.Law,l.minConf+" %");
             }
             // count running time
             watch.Stop();

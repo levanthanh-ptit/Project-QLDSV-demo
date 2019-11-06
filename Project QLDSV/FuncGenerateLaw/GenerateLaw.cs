@@ -9,8 +9,7 @@ namespace Project_QLDSV.FuncGenerateLaw
 {
     class GenerateLaw
     {
-
-        public void generateAllBinaryStrings(ref List<string> stringarr, List<ItemSet> itemSets, ItemSet itemSet,int minConf)
+        public void generateAllBinaryStrings(ref List<DataLaw> stringarr, List<ItemSet> itemSets, ItemSet itemSet,int minConf)
         {
             int n = itemSet.Count;
 
@@ -45,7 +44,7 @@ namespace Project_QLDSV.FuncGenerateLaw
                             {
                                 ArrayLeft = ArrayLeft.Trim(new Char[] { ',' });
                                 ArrayRight = ArrayRight.Trim(new Char[] { ',' });
-                                stringarr.Add(ArrayLeft + " ==>> " + ArrayRight);
+                                stringarr.Add(new DataLaw(ArrayLeft + " ────► " + ArrayRight, MinConfList));
                             }
                         }
                     }

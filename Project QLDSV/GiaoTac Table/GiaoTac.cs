@@ -44,7 +44,7 @@ namespace Project_QLDSV.GiaoTac_Table
             propsToReturn.Add(MaSV);
             foreach (int e in Pass)
                 if (e != -1) propsToReturn.Add(e);
-                else propsToReturn.Add(1);
+                else propsToReturn.Add("NULL");
             return propsToReturn.ToArray();
         }
     }

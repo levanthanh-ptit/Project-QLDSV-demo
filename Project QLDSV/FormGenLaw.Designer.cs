@@ -39,6 +39,7 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.dataGridLaw = new System.Windows.Forms.DataGridView();
             this.MH = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Min = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.tbarMinConf)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridLaw)).BeginInit();
             this.SuspendLayout();
@@ -139,7 +140,8 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridLaw.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridLaw.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.MH});
+            this.MH,
+            this.Min});
             this.dataGridLaw.Location = new System.Drawing.Point(0, 207);
             this.dataGridLaw.Name = "dataGridLaw";
             this.dataGridLaw.RowHeadersWidth = 51;
@@ -150,9 +152,18 @@
             // MH
             // 
             this.MH.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.MH.FillWeight = 93.04813F;
             this.MH.HeaderText = "Môn học";
             this.MH.MinimumWidth = 6;
             this.MH.Name = "MH";
+            // 
+            // Min
+            // 
+            this.Min.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Min.FillWeight = 106.9519F;
+            this.Min.HeaderText = "MinConf";
+            this.Min.MinimumWidth = 6;
+            this.Min.Name = "Min";
             // 
             // FormGenLaw
             // 
@@ -191,5 +202,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.DataGridView dataGridLaw;
         private System.Windows.Forms.DataGridViewTextBoxColumn MH;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Min;
     }
 }
