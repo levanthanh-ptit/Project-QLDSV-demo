@@ -43,12 +43,12 @@
             this.btnRefill = new System.Windows.Forms.Button();
             this.dataGridViewGiaotac = new System.Windows.Forms.DataGridView();
             this.MASVCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label1 = new System.Windows.Forms.Label();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.label5 = new System.Windows.Forms.Label();
             this.dataGridViewEncode = new System.Windows.Forms.DataGridView();
             this.colMaMH = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colEncode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMonHoc)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -231,6 +231,7 @@
             this.dataGridViewGiaotac.RowHeadersWidth = 20;
             this.dataGridViewGiaotac.Size = new System.Drawing.Size(632, 235);
             this.dataGridViewGiaotac.TabIndex = 1;
+            this.dataGridViewGiaotac.Scroll += new System.Windows.Forms.ScrollEventHandler(this.dataGridViewGiaotac_Scroll);
             // 
             // MASVCol
             // 
@@ -239,20 +240,6 @@
             this.MASVCol.MinimumWidth = 6;
             this.MASVCol.Name = "MASVCol";
             this.MASVCol.ReadOnly = true;
-            // 
-            // label1
-            // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.label1.Location = new System.Drawing.Point(349, 9);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(290, 24);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "ĐỀ TÀI TÌM LUẬT MÔN HỌC";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tableLayoutPanel2
             // 
@@ -302,6 +289,20 @@
             // 
             this.colEncode.HeaderText = "Mã hóa";
             this.colEncode.Name = "colEncode";
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.label1.Location = new System.Drawing.Point(349, 9);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(290, 24);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "ĐỀ TÀI TÌM LUẬT MÔN HỌC";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // FormMain
             // 

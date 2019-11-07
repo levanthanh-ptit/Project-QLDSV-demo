@@ -17,6 +17,7 @@ namespace Project_QLDSV
 {
     public partial class FormMain : Form, ITableEventInterface
     {
+        private const int LOAD_LIMIT = 20;
         private int minSupCache;
         private MonHocTable MonHocTable;
         private MonHocAdapter MonHocAdapter;
@@ -70,11 +71,20 @@ namespace Project_QLDSV
                 columns[i] = column;
             }
             dataGridViewGiaotac.Columns.AddRange(columns);
-            foreach (GiaoTac gt in GiaoTacTable)
+            for (int i = 0; i < Math.Min(LOAD_LIMIT, GiaoTacTable.Count); i++)
             {
+                var gt = GiaoTacTable[i];
                 dataGridViewGiaotac.Rows.Add(gt.GetFieldObjectArray());
             }
-            
+        }
+        private void LoadMore_GiaoTacTable()
+        {
+            int currentRows = dataGridViewGiaotac.Rows.Count;
+            for (int i = 0; i < Math.Min(currentRows + LOAD_LIMIT, GiaoTacTable.Count); i++)
+            {
+                var gt = GiaoTacTable[i];
+                dataGridViewGiaotac.Rows.Add(gt.GetFieldObjectArray());
+            }
         }
         private void trackBarMinSup_Scroll(object sender, EventArgs e)
         {
@@ -105,6 +115,16 @@ namespace Project_QLDSV
         {
             FormApriori formApriori = new FormApriori();
             formApriori.Show();
+        }
+
+        private void dataGridViewGiaotac_Scroll(object sender, ScrollEventArgs e)
+        {
+            var dataGrid = (DataGridView)sender;
+            if(e.Type == ScrollEventType.SmallIncrement)
+            if (dataGrid.DisplayedRowCount(false) + dataGrid.FirstDisplayedScrollingRowIndex >= dataGrid.RowCount)
+            {
+                LoadMore_GiaoTacTable();
+            }
         }
     }
 }

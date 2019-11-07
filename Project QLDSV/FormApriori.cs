@@ -13,7 +13,7 @@ namespace Project_QLDSV
 {
     public partial class FormApriori : Form
     {
-        private const int LOAD_LIMIT = 100;
+        private const int LOAD_LIMIT = 10;
         private AprioriSet AprioriSet;
         private int K;
         public FormApriori(int K = 1)
@@ -94,9 +94,10 @@ namespace Project_QLDSV
 
         private void dataGridViewListF_Scroll(object sender, ScrollEventArgs e)
         {
-            var view = (DataGridView)sender;
-            if (e.Type == ScrollEventType.SmallIncrement || e.Type == ScrollEventType.LargeIncrement)
+            var dataGrid = (DataGridView)sender;
+            if (dataGrid.DisplayedRowCount(false) + dataGrid.FirstDisplayedScrollingRowIndex >= dataGrid.RowCount)
             {
+                LoadMore_F();
             }
         }
     }
