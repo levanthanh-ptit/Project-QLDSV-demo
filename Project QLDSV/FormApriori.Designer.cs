@@ -29,17 +29,17 @@
         private void InitializeComponent()
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.txtListL = new System.Windows.Forms.Label();
             this.dataGridViewListF = new System.Windows.Forms.DataGridView();
             this.TID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.F_Item = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewListL = new System.Windows.Forms.DataGridView();
             this.ItemSet = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SUPPORT = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txtListF = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.btnBack = new System.Windows.Forms.Button();
             this.btnNext = new System.Windows.Forms.Button();
-            this.txtListF = new System.Windows.Forms.Label();
-            this.txtListL = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewListF)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewListL)).BeginInit();
@@ -65,6 +65,17 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(882, 245);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
+            // txtListL
+            // 
+            this.txtListL.AutoSize = true;
+            this.txtListL.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtListL.Location = new System.Drawing.Point(443, 0);
+            this.txtListL.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.txtListL.Name = "txtListL";
+            this.txtListL.Size = new System.Drawing.Size(50, 17);
+            this.txtListL.TabIndex = 5;
+            this.txtListL.Text = "Tập L";
+            // 
             // dataGridViewListF
             // 
             this.dataGridViewListF.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -79,6 +90,7 @@
             this.dataGridViewListF.RowTemplate.Height = 24;
             this.dataGridViewListF.Size = new System.Drawing.Size(437, 218);
             this.dataGridViewListF.TabIndex = 0;
+            this.dataGridViewListF.Scroll += new System.Windows.Forms.ScrollEventHandler(this.dataGridViewListF_Scroll);
             // 
             // TID
             // 
@@ -123,6 +135,17 @@
             this.SUPPORT.Name = "SUPPORT";
             this.SUPPORT.Width = 125;
             // 
+            // txtListF
+            // 
+            this.txtListF.AutoSize = true;
+            this.txtListF.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtListF.Location = new System.Drawing.Point(2, 0);
+            this.txtListF.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.txtListF.Name = "txtListF";
+            this.txtListF.Size = new System.Drawing.Size(50, 17);
+            this.txtListF.TabIndex = 4;
+            this.txtListF.Text = "Tập F";
+            // 
             // label1
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -162,28 +185,6 @@
             this.btnNext.Text = "Apriori_TID Next";
             this.btnNext.UseVisualStyleBackColor = true;
             this.btnNext.Click += new System.EventHandler(this.BtnNext_Click);
-            // 
-            // txtListF
-            // 
-            this.txtListF.AutoSize = true;
-            this.txtListF.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtListF.Location = new System.Drawing.Point(2, 0);
-            this.txtListF.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.txtListF.Name = "txtListF";
-            this.txtListF.Size = new System.Drawing.Size(50, 17);
-            this.txtListF.TabIndex = 4;
-            this.txtListF.Text = "Tập F";
-            // 
-            // txtListL
-            // 
-            this.txtListL.AutoSize = true;
-            this.txtListL.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtListL.Location = new System.Drawing.Point(443, 0);
-            this.txtListL.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.txtListL.Name = "txtListL";
-            this.txtListL.Size = new System.Drawing.Size(50, 17);
-            this.txtListL.TabIndex = 5;
-            this.txtListL.Text = "Tập L";
             // 
             // FormApriori
             // 
