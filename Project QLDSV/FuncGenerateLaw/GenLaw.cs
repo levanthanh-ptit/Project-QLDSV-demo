@@ -11,7 +11,7 @@ namespace Project_QLDSV.FuncGenerateLaw
     class GenLaw
     {
 
-        public void printTheArray(int[] arr, int n, ref List<string> stringarr, List<ItemSet> itemSets, ItemSet itemSet, int minConf)
+        public void printTheArray(int[] arr, int n, ref List<DataLaw> stringarr, List<ItemSet> itemSets, ItemSet itemSet, int minConf)
         {
             String ArrayLeft = "";
             String ArrayRight = "";
@@ -25,7 +25,7 @@ namespace Project_QLDSV.FuncGenerateLaw
                     {
                         if (mh.MaMH.Trim().Equals(Program.GiaoTacTable.DynamicFeildLabels[itemSet[i] - 1].Trim()))
                         {
-                            ArrayLeft += mh.TenMH + ",";
+                            ArrayLeft += mh.TenMH + ", ";
                         }
                     }
                     ListLeft.Add(itemSet[i]);
@@ -36,7 +36,7 @@ namespace Project_QLDSV.FuncGenerateLaw
                     {
                         if (mh.MaMH.Trim().Equals(Program.GiaoTacTable.DynamicFeildLabels[itemSet[i] - 1].Trim()))
                         {
-                            ArrayRight += mh.TenMH + ",";
+                            ArrayRight += mh.TenMH + ", ";
                         }
                     }
                     ListRight.Add(itemSet[i]);
@@ -52,9 +52,9 @@ namespace Project_QLDSV.FuncGenerateLaw
                         float MinConfList = ((float)itemSet.Support / itemSets.ElementAt(j).Support) * 100;
                         if (MinConfList >= minConf)
                         {
-                            ArrayLeft = ArrayLeft.Trim(new Char[] { ',' });
-                            ArrayRight = ArrayRight.Trim(new Char[] { ',' });
-                            stringarr.Add(ArrayLeft + " ==>> " + ArrayRight);
+                            ArrayLeft = ArrayLeft.Trim(new Char[] { ',', ' ' });
+                            ArrayRight = ArrayRight.Trim(new Char[] { ',', ' ' });
+                            stringarr.Add(new DataLaw(ArrayLeft + " ────► " + ArrayRight, MinConfList));
                             return;
                         }
                     }
@@ -62,7 +62,7 @@ namespace Project_QLDSV.FuncGenerateLaw
             }
         }
         public void generateAllBinaryStrings(int n,
-                            int[] arr, int i, ref List<string> stringarr, List<ItemSet> itemSets, ItemSet itemSet,
+                            int[] arr, int i, ref List<DataLaw> stringarr, List<ItemSet> itemSets, ItemSet itemSet,
                            int minConf)
         {
             if (i == n)

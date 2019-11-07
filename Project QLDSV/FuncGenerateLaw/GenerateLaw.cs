@@ -1,4 +1,5 @@
 ﻿using Project_QLDSV.DataMiner;
+using Project_QLDSV.Mon_Hoc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,8 +10,7 @@ namespace Project_QLDSV.FuncGenerateLaw
 {
     class GenerateLaw
     {
-
-        public void generateAllBinaryStrings(ref List<string> stringarr, List<ItemSet> itemSets, ItemSet itemSet,int minConf)
+        public void generateAllBinaryStrings(ref List<DataLaw> stringarr, List<ItemSet> itemSets, ItemSet itemSet,int minConf)
         {
             int n = itemSet.Count;
 
@@ -25,12 +25,24 @@ namespace Project_QLDSV.FuncGenerateLaw
                     int item = i & (int)Math.Pow(2,j);
                     if (item != 0)
                     {
-                        ArrayLeft += itemSet[j];
+                        foreach (MonHoc mh in Program.MonHocTable)
+                        {
+                            if (mh.MaMH.Trim().Equals(Program.GiaoTacTable.DynamicFeildLabels[itemSet[j] - 1].Trim()))
+                            {
+                                ArrayLeft += mh.TenMH + ", ";
+                            }
+                        }
                         ListLeft.Add(itemSet[j]);
                     }
                     else
                     {
-                        ArrayRight += itemSet[j];
+                        foreach (MonHoc mh in Program.MonHocTable)
+                        {
+                            if (mh.MaMH.Trim().Equals(Program.GiaoTacTable.DynamicFeildLabels[itemSet[j] - 1].Trim()))
+                            {
+                                ArrayRight += mh.TenMH + ", ";
+                            }
+                        }
                         ListRight.Add(itemSet[j]);
                     }
                 }
@@ -43,9 +55,9 @@ namespace Project_QLDSV.FuncGenerateLaw
                             float MinConfList = ((float)itemSet.Support / itemSets.ElementAt(j).Support) * 100;
                             if (MinConfList >= minConf)
                             {
-                                ArrayLeft = ArrayLeft.Trim(new Char[] { ',' });
-                                ArrayRight = ArrayRight.Trim(new Char[] { ',' });
-                                stringarr.Add(ArrayLeft + " ==>> " + ArrayRight);
+                                ArrayLeft = ArrayLeft.Trim(new Char[] { ',', ' ' });
+                                ArrayRight = ArrayRight.Trim(new Char[] { ',', ' ' });
+                                stringarr.Add(new DataLaw(ArrayLeft + " ────► " + ArrayRight, MinConfList));
                             }
                         }
                     }
