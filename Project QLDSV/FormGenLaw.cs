@@ -15,6 +15,8 @@ namespace Project_QLDSV
     public partial class FormGenLaw : Form
     {
         private int minConf = 0;
+        private const int LOAD_LIMIT = 50;
+        private List<DataLaw> myCollection = new List<DataLaw>();
         public FormGenLaw()
         {
             InitializeComponent();
@@ -42,10 +44,11 @@ namespace Project_QLDSV
             var watch = System.Diagnostics.Stopwatch.StartNew();
             // start
             dataGridLaw.Rows.Clear();
+            myCollection.Clear();
             GenLaw generateLaw = new GenLaw();
             //GenerateLaw generateLaw = new GenerateLaw();
             
-            List<DataLaw> myCollection = new List<DataLaw>();
+            
             List<ItemSet> listL = getListL(Program.AprioriSet);
             for (int i = 0; i < listL.Count; i++)
             {
@@ -61,15 +64,31 @@ namespace Project_QLDSV
             {
                 MessageBox.Show("Kết quả tìm luật rỗng !");
             }
-            foreach (DataLaw l in myCollection)
-            {
-                dataGridLaw.Rows.Add(l.Law, string.Format("{0:n2} %", l.minConf));
-            }
             // count running time
             watch.Stop();
             Console.Out.WriteLine("Generate Law:::" + watch.ElapsedMilliseconds);
+            for (int i = 0; i < Math.Min(LOAD_LIMIT, myCollection.Count); i++)
+            {
+                dataGridLaw.Rows.Add(myCollection[i].Law, string.Format("{0:n2} %", myCollection[i].minConf));
+            }
         }
 
-   
+        private void LoadMore_Law()
+        {
+            int currentRows = dataGridLaw.Rows.Count;
+            for (int i = currentRows; i < Math.Min(currentRows + LOAD_LIMIT, myCollection.Count); i++)
+            {
+                dataGridLaw.Rows.Add(myCollection[i].Law, string.Format("{0:n2} %", myCollection[i].minConf));
+            }
+        }
+        private void dataGridLaw_Scroll(object sender, ScrollEventArgs e)
+        {
+            var dataGrid = (DataGridView)sender;
+            if (e.Type == ScrollEventType.SmallIncrement)
+                if (dataGrid.DisplayedRowCount(false) + dataGrid.FirstDisplayedScrollingRowIndex >= dataGrid.RowCount)
+                {
+                    LoadMore_Law();
+                }
+        }
     }
 }

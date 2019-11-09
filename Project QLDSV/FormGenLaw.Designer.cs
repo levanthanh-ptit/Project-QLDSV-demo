@@ -148,6 +148,7 @@
             this.dataGridLaw.RowTemplate.Height = 24;
             this.dataGridLaw.Size = new System.Drawing.Size(983, 359);
             this.dataGridLaw.TabIndex = 0;
+            this.dataGridLaw.Scroll += new System.Windows.Forms.ScrollEventHandler(this.dataGridLaw_Scroll);
             // 
             // MH
             // 
@@ -163,6 +164,7 @@
             this.Min.HeaderText = "MinConf";
             this.Min.MinimumWidth = 6;
             this.Min.Name = "Min";
+            this.Min.Width = 125;
             // 
             // FormGenLaw
             // 
