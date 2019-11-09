@@ -80,7 +80,7 @@ namespace Project_QLDSV
         private void LoadMore_GiaoTacTable()
         {
             int currentRows = dataGridViewGiaotac.Rows.Count;
-            for (int i = 0; i < Math.Min(currentRows + LOAD_LIMIT, GiaoTacTable.Count); i++)
+            for (int i = currentRows; i < Math.Min(currentRows + LOAD_LIMIT, GiaoTacTable.Count); i++)
             {
                 var gt = GiaoTacTable[i];
                 dataGridViewGiaotac.Rows.Add(gt.GetFieldObjectArray());
