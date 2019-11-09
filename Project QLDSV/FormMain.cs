@@ -56,7 +56,7 @@ namespace Project_QLDSV
             DataGridViewColumn[] columns = new DataGridViewColumn[GiaoTacTable.DynamicFeildLabels.Count];
 
             dataGridViewEncode.Rows.Clear();
-            foreach(object[] el in GiaoTacTable.EndcodeList())
+            foreach (object[] el in GiaoTacTable.EndcodeList())
             {
                 dataGridViewEncode.Rows.Add(el);
             }
@@ -101,7 +101,7 @@ namespace Project_QLDSV
                 GiaoTacAdapter.SP_Fill(trackBarMinSup.Value);
                 minSupCache = trackBarMinSup.Value;
             }
-            catch(SqlException ex)
+            catch (SqlException ex)
             {
                 MessageBox.Show(ex.Message);
                 trackBarMinSup.Value = minSupCache;
@@ -120,11 +120,11 @@ namespace Project_QLDSV
         private void dataGridViewGiaotac_Scroll(object sender, ScrollEventArgs e)
         {
             var dataGrid = (DataGridView)sender;
-            if(e.Type == ScrollEventType.SmallIncrement)
-            if (dataGrid.DisplayedRowCount(false) + dataGrid.FirstDisplayedScrollingRowIndex >= dataGrid.RowCount)
-            {
-                LoadMore_GiaoTacTable();
-            }
+            if (e.Type == ScrollEventType.SmallIncrement)
+                if (dataGrid.DisplayedRowCount(false) + dataGrid.FirstDisplayedScrollingRowIndex >= dataGrid.RowCount)
+                {
+                    LoadMore_GiaoTacTable();
+                }   
         }
     }
 }
