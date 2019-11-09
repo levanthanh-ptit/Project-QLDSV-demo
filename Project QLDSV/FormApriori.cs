@@ -95,10 +95,11 @@ namespace Project_QLDSV
         private void dataGridViewListF_Scroll(object sender, ScrollEventArgs e)
         {
             var dataGrid = (DataGridView)sender;
-            if (dataGrid.DisplayedRowCount(false) + dataGrid.FirstDisplayedScrollingRowIndex >= dataGrid.RowCount)
-            {
-                LoadMore_F();
-            }
+            if (e.Type == ScrollEventType.SmallIncrement)
+                if (dataGrid.DisplayedRowCount(false) + dataGrid.FirstDisplayedScrollingRowIndex >= dataGrid.RowCount)
+                {
+                    LoadMore_F();
+                }
         }
     }
 }
