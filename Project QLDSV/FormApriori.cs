@@ -53,6 +53,7 @@ namespace Project_QLDSV
         {
 
             dataGridViewListF.Rows.Clear();
+            txtCountF.Text = AprioriSet[K - 1].F_List.Count.ToString();
             for (int i = 0; i < Math.Min(LOAD_LIMIT, AprioriSet[K - 1].F_List.Count); i++)
             {
                 F_Item f_item = AprioriSet[K - 1].F_List[i];
@@ -71,6 +72,7 @@ namespace Project_QLDSV
         private void CollectionL_Filled()
         {
             dataGridViewListL.Rows.Clear();
+            txtCountL.Text = AprioriSet[K - 1].L_List.Count.ToString();
             foreach (ItemSet itemSet in AprioriSet[K - 1].L_List)
             {
                 dataGridViewListL.Rows.Add(itemSet.ToString(), itemSet.Support);
