@@ -23,8 +23,7 @@ namespace Project_QLDSV
             this.K = K;
             InitializeComponent();
             Refill();
-            this.txtListF.Text = "Tập F" + K;
-            this.txtListL.Text = "Tập L" + K;
+           
             AprioriSet.OnAprioriEnd += AprioriSet_OnAprioriEnd;
         }
 
@@ -48,6 +47,8 @@ namespace Project_QLDSV
         {
             this.CollectionF_Filled();
             this.CollectionL_Filled();
+            this.txtListF.Text = "Tập F" + K;
+            this.txtListL.Text = "Tập L" + K;
         }
         private void CollectionF_Filled()
         {
@@ -83,7 +84,6 @@ namespace Project_QLDSV
             SetK(K - 1);
             if (K == 1) btnBack.Enabled = false;
             Refill();
-
         }
 
         private void BtnNext_Click(object sender, EventArgs e)
