@@ -14,6 +14,7 @@ namespace Project_QLDSV
     public partial class FormApriori : Form
     {
         private const int LOAD_LIMIT = 10;
+        private bool loading = false;
         private AprioriSet AprioriSet;
         private int K;
         public FormApriori(int K = 1)
@@ -63,12 +64,14 @@ namespace Project_QLDSV
         }
         private void LoadMore_F()
         {
+            loading = true;
             int currentRows = dataGridViewListF.Rows.Count;
             for (int i = currentRows; i < Math.Min(currentRows + LOAD_LIMIT, AprioriSet[K - 1].F_List.Count); i++)
             {
                 F_Item f_item = AprioriSet[K - 1].F_List[i];
                 dataGridViewListF.Rows.Add(f_item.TID, f_item.ToString());
             }
+            loading = false;
         }
         private void CollectionL_Filled()
         {
@@ -96,6 +99,7 @@ namespace Project_QLDSV
 
         private void dataGridViewListF_Scroll(object sender, ScrollEventArgs e)
         {
+            if (loading) return;
             var dataGrid = (DataGridView)sender;
             if (e.Type == ScrollEventType.SmallIncrement)
                 if (dataGrid.DisplayedRowCount(false) + dataGrid.FirstDisplayedScrollingRowIndex >= dataGrid.RowCount)

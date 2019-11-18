@@ -18,6 +18,7 @@ namespace Project_QLDSV
     public partial class FormMain : Form, ITableEventInterface
     {
         private const int LOAD_LIMIT = 20;
+        private bool loading = false;
         private int minSupCache;
         private MonHocTable MonHocTable;
         private MonHocAdapter MonHocAdapter;
@@ -79,12 +80,14 @@ namespace Project_QLDSV
         }
         private void LoadMore_GiaoTacTable()
         {
+            loading = true;
             int currentRows = dataGridViewGiaotac.Rows.Count;
             for (int i = currentRows; i < Math.Min(currentRows + LOAD_LIMIT, GiaoTacTable.Count); i++)
             {
                 var gt = GiaoTacTable[i];
                 dataGridViewGiaotac.Rows.Add(gt.GetFieldObjectArray());
             }
+            loading = false;
         }
         private void trackBarMinSup_Scroll(object sender, EventArgs e)
         {
@@ -120,6 +123,7 @@ namespace Project_QLDSV
 
         private void dataGridViewGiaotac_Scroll(object sender, ScrollEventArgs e)
         {
+            if (loading) return;
             var dataGrid = (DataGridView)sender;
             if (e.Type == ScrollEventType.SmallIncrement)
                 if (dataGrid.DisplayedRowCount(false) + dataGrid.FirstDisplayedScrollingRowIndex >= dataGrid.RowCount)
