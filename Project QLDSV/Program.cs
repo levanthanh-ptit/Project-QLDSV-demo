@@ -26,6 +26,7 @@ namespace Project_QLDSV
         public static FormMain FormMain;
         public static AprioriSet AprioriSet;
         public static int MinSupport = 25;
+        public static float MinSupCount = 0;
         public static void SetupServices()
         {
             dynamic server = JObject.Parse(File.ReadAllText("../../appsettings.json"));
