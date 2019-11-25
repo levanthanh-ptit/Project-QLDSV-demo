@@ -19,6 +19,7 @@ namespace Project_QLDSV.DataMiner
             string str = "----F_List:::\n";
             foreach(F_Item f_Item in F_List)
             {
+                str += f_Item.TID;
                 str += f_Item.ToString();
             }
             str += "----L_List:::\n";

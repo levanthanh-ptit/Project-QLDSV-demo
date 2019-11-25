@@ -143,10 +143,9 @@ namespace Project_QLDSV.DataMiner
                     aprioriNext.F_List.Add(f);
                 }
             }
-            float minSup = ((float)Program.MinSupport / 100) * aprioriNext.F_List.Count;
             for (int j = 0; j < c_List.Count; j++) //O(n)
             {
-                if (c_List[j].Support >= minSup)
+                if (c_List[j].Support >= Program.MinSupCount)
                 {
                     ItemSet item = new ItemSet();
                     item.Support = c_List[j].Support;
@@ -155,6 +154,7 @@ namespace Project_QLDSV.DataMiner
                 }
             }
             Add(aprioriNext);
+           // MessageBox.Show(aprioriNext.ToString(),"L"+Count,MessageBoxButtons.OK);
             // count running time
             watch.Stop();
             Console.Out.WriteLine("AprioriSet NextStep:::{0}:::{1}", Count, watch.ElapsedMilliseconds);

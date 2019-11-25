@@ -40,6 +40,8 @@
             this.dataGridLaw = new System.Windows.Forms.DataGridView();
             this.MH = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Min = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtRecordLaw = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.tbarMinConf)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridLaw)).BeginInit();
             this.SuspendLayout();
@@ -166,11 +168,32 @@
             this.Min.Name = "Min";
             this.Min.Width = 125;
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(12, 187);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(58, 17);
+            this.label6.TabIndex = 9;
+            this.label6.Text = "Record:";
+            // 
+            // txtRecordLaw
+            // 
+            this.txtRecordLaw.BackColor = System.Drawing.SystemColors.InactiveBorder;
+            this.txtRecordLaw.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.txtRecordLaw.Location = new System.Drawing.Point(76, 184);
+            this.txtRecordLaw.Name = "txtRecordLaw";
+            this.txtRecordLaw.Size = new System.Drawing.Size(58, 22);
+            this.txtRecordLaw.TabIndex = 10;
+            this.txtRecordLaw.Text = "0";
+            // 
             // FormGenLaw
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 565);
+            this.Controls.Add(this.txtRecordLaw);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.dataGridLaw);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.btnSINHLUAT);
@@ -204,5 +227,7 @@
         private System.Windows.Forms.DataGridView dataGridLaw;
         private System.Windows.Forms.DataGridViewTextBoxColumn MH;
         private System.Windows.Forms.DataGridViewTextBoxColumn Min;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox txtRecordLaw;
     }
 }

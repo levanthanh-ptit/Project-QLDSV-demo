@@ -17,9 +17,11 @@ namespace Project_QLDSV
         private int minConf = 0;
         private const int LOAD_LIMIT = 50;
         private List<DataLaw> myCollection = new List<DataLaw>();
+        private List<ItemSet> listL;
         public FormGenLaw()
         {
             InitializeComponent();
+            listL = getListL(Program.AprioriSet);
         }
 
         private void TbarMinConf_Scroll(object sender, EventArgs e)
@@ -45,19 +47,17 @@ namespace Project_QLDSV
             // start
             dataGridLaw.Rows.Clear();
             myCollection.Clear();
-            GenLaw generateLaw = new GenLaw();
-            //GenerateLaw generateLaw = new GenerateLaw();
-            
-            
-            List<ItemSet> listL = getListL(Program.AprioriSet);
+           // GenLaw generateLaw = new GenLaw();
+            GenerateLaw generateLaw = new GenerateLaw();
+           
             for (int i = 0; i < listL.Count; i++)
             {
                 if (listL.ElementAt(i).Count > 1)
                 {
-                    int n = listL.ElementAt(i).Count;
-                    int[] arr = new int[n];
-                    generateLaw.generateAllBinaryStrings(n, arr, 0, ref myCollection, listL, listL.ElementAt(i), minConf);
-                   //generateLaw.generateAllBinaryStrings(ref myCollection, listL, listL.ElementAt(i),minConf);
+                   // int n = listL.ElementAt(i).Count;
+                   // int[] arr = new int[n];
+                   // generateLaw.generateAllBinaryStrings(n, arr, 0, ref myCollection, listL, listL.ElementAt(i), minConf);
+                   generateLaw.generateAllBinaryStrings(ref myCollection, listL, listL.ElementAt(i),minConf);
                 }
             }
             if (myCollection.Count == 0)
@@ -67,6 +67,7 @@ namespace Project_QLDSV
             // count running time
             watch.Stop();
             Console.Out.WriteLine("Generate Law:::" + watch.ElapsedMilliseconds);
+            txtRecordLaw.Text = myCollection.Count.ToString();
             for (int i = 0; i < Math.Min(LOAD_LIMIT, myCollection.Count); i++)
             {
                 dataGridLaw.Rows.Add(myCollection[i].Law, string.Format("{0:n2} %", myCollection[i].minConf));
