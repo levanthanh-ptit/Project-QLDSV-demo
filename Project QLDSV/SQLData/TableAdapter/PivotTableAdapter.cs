@@ -11,6 +11,7 @@ namespace SQLData.TableAdapter
 {
     public abstract class PivotTableAdapter<T> : TableAdapter<T> where T : Row.Row, new()
     {
+        public int TimeoutLimit { get; set; } = 30;
         PivotTable<T> DataTable { get; set; }
         public PivotTableAdapter(PivotTable<T> table, SqlConnection connection) : base(table, connection)
         {
@@ -25,6 +26,7 @@ namespace SQLData.TableAdapter
                     DataTable.Clear();
                     string sql = $"DECLARE @return_value int EXEC @return_value = {SPString} SELECT 'Return Value' = @return_value";
                     SqlCommand command = new SqlCommand(sql, Connection);
+                    command.CommandTimeout = TimeoutLimit;
                     SqlDataReader dataReader = command.ExecuteReader();
                     int VisableFields = new T().VisablePropertiesCount();
                     for (int i = VisableFields; i < dataReader.FieldCount; i++)

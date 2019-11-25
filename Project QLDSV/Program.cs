@@ -38,7 +38,9 @@ namespace Project_QLDSV
             MonHocTable = new MonHocTable();
             MonHocAdapter = new MonHocAdapter(MonHocTable, dataRepository.sqlConnection);
             GiaoTacTable = new GiaoTacTable();
-            GiaoTacAdapter = new GiaoTacAdapter(GiaoTacTable, dataRepository.sqlConnection);
+            GiaoTacAdapter = new GiaoTacAdapter(GiaoTacTable, dataRepository.sqlConnection) {
+                TimeoutLimit = 180
+            };
             FormMain = new FormMain(MonHocTable, MonHocAdapter, GiaoTacTable, GiaoTacAdapter);
         }
         public static void StartServices()
