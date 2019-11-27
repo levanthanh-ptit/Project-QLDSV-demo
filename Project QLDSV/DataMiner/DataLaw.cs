@@ -13,7 +13,7 @@ namespace Project_QLDSV.DataMiner
 
         public DataLaw(string law, float minConf)
         {
-            Law = law;
+            this.Law = law;
             this.minConf = minConf;
         }
 
